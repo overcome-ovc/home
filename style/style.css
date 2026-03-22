@@ -1,0 +1,964 @@
+/* ===========================================================
+   POLACY RODACY – MASTER STYLESHEET
+   Author: maly_misiek
+   =========================================================== */
+
+
+/* ===========================================================
+   1) ROOT VARIABLES
+   =========================================================== */
+:root {
+  --bg: #f4f4f4;
+  --text: #1a1a1a;
+
+  /* Brand */
+  --ovc-blue: ;
+  --accent-hover: rgb(160, 10, 10);
+
+  /* Layout */
+  --section-bg: #ffffff;
+  --accent-light: rgba(130, 0, 0, 0.15);
+
+  /* Borders */
+  --border: #cfcfcf;
+
+  /* Navigation */
+  --nav-bg: #1a1a1a;
+  --nav-link: #ffffff;
+
+  /* Footer */
+  --footer-bg: #222;
+  --footer-text: #aaa;
+
+  /* Links & icons */
+  --icon-color: #1a1a1a;
+  --link-color: #1a1a1a;
+  --link-hover: var(--accent);
+}
+
+
+/* ===========================================================
+   2) DARK THEME
+   =========================================================== */
+[data-theme="dark"] {
+  --bg: #121212;
+  --text: #f4f4f4;
+
+  --section-bg: #1e1e1e;
+  --accent-light: rgba(255, 90, 90, 0.15);
+
+  --nav-bg: #000;
+  --nav-link: #fff;
+
+  --footer-bg: #000;
+  --footer-text: #777;
+
+  --icon-color: #f4f4f4;
+  --link-color: #f4f4f4;
+}
+
+
+/* ===========================================================
+   3) GLOBAL RESET & BASE
+   =========================================================== */
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+main {
+  padding-bottom: 4rem;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--link-hover);
+}
+
+ul {
+  padding-left: 20px;
+}
+
+.flag {
+  width: 18px;
+  height: 12px;
+  object-fit: cover;
+  border-radius: 2px;
+  margin-right: 6px;
+}
+
+
+/* ===========================================================
+   4) GENERIC LAYOUT
+   =========================================================== */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+section {
+  margin: 4rem 0;
+}
+
+section h2 {
+  color: var(--accent);
+  border-bottom: 1px solid var(--border);
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+
+/* ===========================================================
+   5) HEADER
+   =========================================================== */
+header {
+  background: var(--accent);
+  color: #fff;
+  text-align: center;
+  padding: 70px 1rem 2rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.7rem;
+}
+
+header p {
+  opacity: 0.9;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+
+/* ===========================================================
+   6) NAVBAR (DESKTOP)
+   =========================================================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.504);
+  backdrop-filter: blur(4px);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  z-index: 1000;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-container {
+  max-width: 1100px;
+  width: 100%;
+  padding: 0 1.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo img {
+  height: 36px;
+  transition: transform 0.3s ease;
+}
+
+.nav-logo img:hover {
+  transform: scale(1.05);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.8rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--nav-link);
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+.nav-toggle {
+  display: none;
+  cursor: pointer;
+  color: white;
+  font-size: 1.8rem;
+}
+
+
+/* ===========================================================
+   7) MOBILE NAV
+   =========================================================== */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  z-index: 998;
+}
+
+.nav-overlay.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.nav-panel {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 70%;
+  max-width: 300px;
+  height: 100vh;
+
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(10px);
+
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+
+  transition: right 0.4s ease;
+  z-index: 999;
+}
+
+.nav-panel.show {
+  right: 0;
+}
+
+.nav-panel a {
+  font-size: 1.1rem;
+  padding: 0.6rem 0;
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-panel a:hover {
+  color: var(--accent);
+}
+
+.nav-close {
+  align-self: flex-end;
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+
+/* ===========================================================
+   8) NEWS GRID
+   =========================================================== */
+.news-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+
+.news-card {
+  background: var(--section-bg);
+  border-radius: 12px;
+  overflow: hidden;
+
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.25s ease, box-shadow 0.3s ease;
+
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.news-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 14px rgba(0,0,0,0.25);
+}
+
+.news-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.news-card-content {
+  padding: 1rem 1.2rem;
+}
+
+.news-card h3 {
+  margin: 0.3rem 0;
+  color: var(--accent);
+}
+
+.news-card small {
+  color: var(--footer-text);
+  font-size: 0.85rem;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ===========================================================
+   9) TEAM TABS (LIQUIPEDIA STYLE)
+   =========================================================== */
+.team-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: #111;
+  color: #aaa;
+  border: 1px solid #222;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.tab-icon {
+  width: 30px;
+  height: 30px;
+  opacity: 0.75;
+}
+
+.tab-text {
+  white-space: nowrap;
+}
+
+.tab:hover {
+  color: white;
+  border-color: var(--accent);
+}
+
+.tab:hover .tab-icon {
+  opacity: 0.9;
+}
+
+.tab.active {
+  color: white;
+  border-color: var(--accent);
+}
+
+.tab.active .tab-icon {
+  opacity: 1;
+}
+
+
+/* ===========================================================
+   10) TEAM PAGE
+   =========================================================== */
+.page {
+  max-width: 1000px;
+  margin: 40px auto;
+  background: var(--section-bg);
+  padding: 24px;
+  border: 1px solid var(--border);
+}
+
+.page-title {
+  margin-top: 0;
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 6px;
+}
+
+.intro {
+  color: #444;
+}
+
+.infobox {
+  float: right;
+  width: 280px;
+  border: 1px solid var(--border);
+  margin-left: 20px;
+  background: #fafafa;
+}
+
+.infobox h2 {
+  background: var(--accent);
+  color: white;
+  margin: 0;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.infobox-image {
+  background: #111;
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.infobox-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.infobox table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.infobox td {
+  padding: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+
+/* ===========================================================
+   11) TEAMS GRID (teams.html)
+   =========================================================== */
+.teams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.team-card {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  background: #fff;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.25s ease, box-shadow 0.3s ease;
+
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.team-card:hover{
+  transform: translateY(-5px);
+  box-shadow: 0 8px 14px rgba(0,0,0,0.25);
+}
+
+.team-card img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.team-card:hover {
+  border-color: var(--accent);
+}
+
+.team-info h3 {
+  margin: 0;
+}
+
+/* ===========================================================
+   12) MEMBERS GRID (members.html)
+   =========================================================== */
+
+
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+  justify-items: center;
+}
+
+ .member-card {
+  background: linear-gradient(145deg, #8b0000, #400000);
+  border-radius: 18px;
+  padding: 20px;
+  width: 220px;
+  text-align: center;
+  color: white;
+  transition: 0.4s ease;
+  transform-style: preserve-3d;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  will-change: transform;
+}
+
+.member-card img {
+  width: 100%;
+  border-radius: 12px;
+  transition: 0.4s ease;
+}
+
+.member-card:hover {
+  transform: translateY(-12px) scale(1.05);
+  box-shadow: 0 25px 50px rgba(130,0,0,0.8);
+}
+
+.member-card:hover img {
+  transform: scale(1.08);
+}
+
+.member-card::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: linear-gradient(
+    120deg,
+    transparent 40%,
+    rgba(255,255,255,0.18),
+    transparent 60%
+  );
+  transform: translateX(-120%) rotate(0deg);
+  transition: none;
+}
+
+.member-card:hover::before {
+  animation: shineMove 0.9s ease forwards;
+}
+
+@keyframes shineMove {
+  0% {
+    transform: translateX(-120%) rotate(0deg);
+  }
+  100% {
+    transform: translateX(120%) rotate(0deg);
+  }
+}
+
+
+.member-card:hover::before {
+  transform: translateX(100%);
+}
+
+/* ===========================================================
+   13) for players profile page
+   =========================================================== */
+
+.cr-profile {
+  position: relative;
+  overflow: hidden;
+  height: 600px;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,.6));
+  z-index: 1;
+}
+
+.bg-name {
+  position: absolute;
+  font-size: 180px;
+  font-weight: 900;
+  opacity: 0.07;
+  transform: translateX(-120%) skewX(-10deg);
+  transition: 1s cubic-bezier(.15,.9,.2,1);
+  white-space: nowrap;
+}
+
+.character {
+  position: absolute;
+  right: 40px;
+  bottom: -40px;
+  max-height: 110%;
+  object-fit: contain;
+  opacity: 0;
+  transform: translateY(120px) scale(0.9);
+}
+.character.enter {
+  animation: glitchIn 0.6s steps(2, end) forwards;
+}
+
+.player-nick {
+  position: absolute;
+  bottom: 40px;
+  left: 60px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 0.5s ease;
+}
+@media (max-width: 768px) {
+
+  .cr-profile {
+    height: 460px;
+  }
+
+  .bg-name {
+  position: absolute;
+  left: 0;
+  top: 120px;
+
+  font-weight: 900;
+  opacity: 0.07;
+  white-space: nowrap;
+  line-height: 0.9;
+
+  transform: skewX(-10deg);
+  pointer-events: none;
+
+  font-size: 180px; /* max, JS to skoryguje */
+}
+
+@media (max-width: 768px) {
+  .bg-name {
+    top: 80px;
+    font-size: clamp(48px, 18vw, 96px);
+  }
+}
+
+
+
+  .character {
+  position: absolute;
+  right: 40px;
+  bottom: -40px;
+  height: 110%;
+  max-height: 720px;
+  opacity: 0;
+  transform: translateY(120px) scale(0.9);
+}
+@media (max-width: 1600px) {
+  .character {
+    height: 100%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .character {
+    height: 90%;
+    right: 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .character {
+    height: 80%;
+  }
+}
+
+@media (max-width: 768px) {
+  .character {
+    height: 70%;
+    right: 50%;
+    transform: translateX(50%) translateY(120px) scale(0.9);
+  }
+}
+
+
+  .character.enter {
+    animation: glitchInMobile 0.6s steps(2, end) forwards;
+  }
+
+  .player-nick {
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%) translateY(30px);
+    text-align: center;
+    font-size: 28px;
+  }
+}
+
+/* ===== INTRO WALL ===== */
+
+.intro {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 50;
+
+  overflow: hidden; 
+  transform: translateX(0);
+  transition: transform 1s cubic-bezier(.7,0,.2,1);
+}
+
+
+.intro.hide {
+  transform: translateX(100%);
+}
+
+
+
+/* WALL GRID */
+
+.nick-wall {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 12px;
+  position: absolute;
+  inset: 0;
+  padding: 40px;
+}
+@media (max-width: 1600px) {
+  .nick-wall {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media (max-width: 1200px) {
+  .nick-wall {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .nick-wall {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nick-wall {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+
+.nick-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  max-height: 100%;
+}
+
+
+.nick {
+  font-size: 32.5px;
+  font-weight: 800;
+  color: rgb(130,0,0);
+  opacity: 0;
+  transform: translateY(40px);
+  text-shadow:
+    0 0 10px rgba(130,0,0,.6),
+    0 0 20px rgba(130,0,0,.3);
+  transition: .18s ease-out;
+  text-align: center;
+}
+
+.intro-mask {
+  position: absolute;
+  inset: 0;
+  overflow: hidden; 
+}
+@keyframes glitchIn {
+  0% {
+    opacity: 0;
+    transform: translateY(120px) scale(0.9);
+    filter: none;
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(80px) translateX(-4px) scale(1);
+    filter: drop-shadow(-3px 0 red) drop-shadow(3px 0 cyan);
+  }
+  40% {
+    transform: translateY(40px) translateX(4px);
+    filter: drop-shadow(3px 0 red) drop-shadow(-3px 0 cyan);
+  }
+  60% {
+    transform: translateY(10px) translateX(-2px);
+    filter: drop-shadow(-2px 0 red) drop-shadow(2px 0 cyan);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: none;
+  }
+}
+@keyframes glitchInMobile {
+  0% {
+    opacity: 0;
+    transform: translateX(50%) translateY(120px) scale(0.9);
+    filter: none;
+  }
+  30% {
+    opacity: 1;
+    transform: translateX(48%) translateY(60px);
+    filter: drop-shadow(-3px 0 red) drop-shadow(3px 0 cyan);
+  }
+  60% {
+    transform: translateX(52%) translateY(20px);
+    filter: drop-shadow(2px 0 red) drop-shadow(-2px 0 cyan);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(50%) translateY(0) scale(1);
+    filter: none;
+  }
+}
+
+.character.glitch {
+  animation: glitchIn 0.6s steps(2, end) forwards;
+}
+
+.player-info {
+  width: 100%;
+  max-width: 1200px;
+  margin: 100px auto;
+  padding: 0 60px;
+  color: #000000;
+}
+
+.info-title {
+  font-size: 36px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  margin-bottom: 40px;
+}
+
+.info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.info-row {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.info-label {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.info-value {
+  font-size: 22px;
+  font-weight: 700;
+  text-align: right;
+  justify-self: end;
+}
+
+@media (max-width: 768px) {
+  .info-row {
+    grid-template-columns: 1fr;
+  }
+
+  .info-value {
+    text-align: left;
+    justify-self: start;
+  }
+}
+
+
+/* ===========================================================
+   14) FOOTER
+   =========================================================== */
+footer {
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  padding: 4rem 1rem 2rem;
+  margin-top: 4rem;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 240px;
+}
+
+.footer-column h3 {
+  color: var(--accent);
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+footer a {
+  color: var(--footer-text) !important;
+}
+
+footer a:hover {
+  color: var(--accent) !important;
+}
+
+.footer-social {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-social a {
+  font-size: 1.7rem;
+}
+
+.footer-bottom {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 0.85rem;
+}
+
+
+/* ===========================================================
+   15) RESPONSIVE
+   =========================================================== */
+@media (max-width: 850px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: block; }
+}
+
+@media (max-width: 700px) {
+  .news-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  header h1 { font-size: 2rem; }
+}
+
+@media (max-width: 500px) {
+    /* Tabs pionowo */
+  .team-tabs {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .team-tabs .tab {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}
+@media (max-width: 800px) {
+
+  /* Infobox na środku */
+  .infobox {
+    float: none;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 350px;
+  }
+
+}
