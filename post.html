@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="assets/images/ovc_V2.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>News | Overcome</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style/style.css"/>
+  <style>
+    
+  </style>
+</head>
+<body>
+      <nav><div class="nav-container"><ul class="nav-links"><a href="news.html">← Back to News</a></ul></div></nav>
+
+  <main style="max-width:900px;margin:2rem auto;padding:0 1rem;">
+    <div id="post-root">
+      <p>Loading post...</p>
+    </div>
+  </main>
+
+<script>
+(async function(){
+  const repoRawBase = "https://raw.githubusercontent.com/polacyrodacy/Main/main/news/";
+  const params = new URLSearchParams(location.search);
+  const date = params.get('date');
+  const root = document.getElementById('post-root');
+
+  if (!date) {
+    root.innerHTML = "<p>No date provided in URL.</p>";
+    return;
+  }
+
+  try {
+    // load index.json
+    const res = await fetch(repoRawBase + "index.json");
+    if (!res.ok) {
+      const txt = await res.text();
+      console.error("index.json fetch not OK:", res.status, txt);
+      root.innerHTML = `<p style="color:red;">Failed to load index.json (HTTP ${res.status}).</p>`;
+      return;
+    }
+    const posts = await res.json();
+    const post = posts.find(p => p.date === date);
+    if (!post) {
+      root.innerHTML = "<p>Post not found for that date.</p>";
+      return;
+    }
+
+    // set title
+    document.title = `${post.title} – Overcome`;
+
+    // image (fallback)
+    const image = post.image || 'assets/images/ovc.png';
+
+    // load markdown file
+    const mdRes = await fetch(repoRawBase + post.file);
+    if (!mdRes.ok) {
+      const raw = await mdRes.text();
+      console.error("Markdown fetch error:", mdRes.status, raw);
+      root.innerHTML = `<p style="color:red;">Failed to load article file (HTTP ${mdRes.status}). Check console.</p>`;
+      return;
+    }
+    const mdText = await mdRes.text();
+    const html = marked.parse(mdText);
+
+    root.innerHTML = `
+      <img src="${image}" alt="${post.title}" style="width:100%;max-height:420px;object-fit:cover;border-radius:12px;margin-bottom:1rem;">
+      <h1>${post.title}</h1>
+      <small style="opacity:.8">${post.date}</small>
+      <article class="news-body" style="margin-top:1rem;">${html}</article>
+    `;
+
+  } catch(err) {
+    console.error("Error loading post:", err);
+    root.innerHTML = `<p style="color:red;">Network/error loading post — check console.</p>`;
+  }
+})();
+</script>
+  <footer>
+    <p>© 2025–2026 Overcome Esports<br>
+    #OvercomeYourLimits • Brawl Stars APAC</p>
+  </footer>
+
+
+<script src="scripts/nav.js"></script>
+</body>
+</html>
