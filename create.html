@@ -113,6 +113,8 @@ async function generate() {
     return;
   }
 
+  console.log("CLICKED");
+
   const formData = new FormData();
   formData.append("password", password);
   formData.append("title", title);
@@ -123,17 +125,27 @@ async function generate() {
     formData.append("image", imageFile);
   }
 
-  const res = await fetch("https://git.overcome-ovc.workers.dev", {
-    method: "POST",
-    body: formData
-  });
+  try {
+    const res = await fetch("https://git.overcome-ovc.workers.dev", {
+      method: "POST",
+      body: formData
+    });
 
-  const data = await res.json();
+    console.log(res.status);
+    const text = await res.text();
+    console.log(text);
 
-  if (data.ok) {
-    alert("Post added 🔥");
-  } else {
-    alert(data.error || "Error");
+    const data = JSON.parse(text);
+
+    if (data.ok) {
+      alert("Post added 🔥");
+    } else {
+      alert(data.error || "Error");
+    }
+
+  } catch (err) {
+    console.error(err);
+    alert("Network error");
   }
 }
 </script>
