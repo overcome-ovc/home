@@ -123,7 +123,7 @@ async function generate() {
     formData.append("image", imageFile);
   }
 
-  const res = await fetch("https://twoj-worker.workers.dev", {
+  const res = await fetch("https://git.overcome-ovc.workers.dev", {
     method: "POST",
     body: formData
   });
