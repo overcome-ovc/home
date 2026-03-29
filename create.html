@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create News | Overcome</title>
+  <link rel="icon" href="assets/images/ovc.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style/style.css" />
+  <style>
+    body {
+      background: #0a0a14;
+      color: #e0f0ff;
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+    }
+
+    h1 {
+      margin-bottom: 1.5rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.8rem;
+      border-radius: 8px;
+      border: none;
+      background: #111a2e;
+      color: white;
+    }
+
+    textarea {
+      height: 200px;
+      resize: vertical;
+    }
+
+    button {
+      padding: 0.8rem 1.5rem;
+      background: #5997fb;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #3b7be0;
+    }
+
+    .output {
+      margin-top: 2rem;
+      background: #05050f;
+      padding: 1rem;
+      border-radius: 10px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Create New Post</h1>
+<input id="password" type="password" placeholder="Admin password">
+<input id="title" placeholder="Title ">
+<input id="date" placeholder="Date(YYYY-MM-DD)">
+<input type="file" id="imageFile" accept="image/*">
+<img id="preview" style="max-width:200px;margin:10px 0;display:none;border-radius:10px;">
+<textarea id="content" placeholder="Write post content in Markdown..."></textarea>
+
+<button onclick="generate()">Publish</button>
+
+<div class="output">
+  <h3>index.json entry:</h3>
+  <code id="json"></code>
+
+  <h3>Markdown file:</h3>
+  <code id="md"></code>
+</div>
+
+<script>
+let imageFile = null;
+let imageExt = "";
+let imageBase64 = "";
+
+document.getElementById('imageFile').addEventListener('change', function(e){
+  const file = e.target.files[0];
+  if (!file) return;
+
+  imageFile = file;
+  imageExt = file.name.split('.').pop();
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    imageBase64 = e.target.result.split(',')[1]; // 🔥 ważne
+    const preview = document.getElementById('preview');
+    preview.src = e.target.result;
+    preview.style.display = "block";
+  };
+  reader.readAsDataURL(file);
+});
+
+async function generate() {
+  const password = document.getElementById('password').value;
+  const title = document.getElementById('title').value;
+  const date = document.getElementById('date').value;
+  const content = document.getElementById('content').value;
+
+  if (!title || !date || !content) {
+    alert("Fill all fields");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("password", password);
+  formData.append("title", title);
+  formData.append("date", date);
+  formData.append("content", content);
+
+  if (imageFile) {
+    formData.append("image", imageFile); // 🔥 TU IDZIE PLIK
+  }
+
+  const res = await fetch("https://git.overcome-ovc.workers.dev", {
+    method: "POST",
+    body: formData
+  });
+
+  const data = await res.json();
+
+  if (data.ok) {
+    alert("Post added.");
+  } else {
+    alert("Error: " + data.error);
+  }
+}
+</script>
+</body>
+</html>
