@@ -10,6 +10,51 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="style/style.css" />
+  <style>
+    .latest-news {
+  padding: 60px 6%;
+}
+
+#latest-post {
+  max-width: 600px;
+  margin: auto;
+}
+
+.latest-card {
+  background: linear-gradient(
+    145deg,
+    rgba(20,30,60,0.6),
+    rgba(10,15,30,0.7)
+  );
+  border: 1px solid rgba(89,151,251,0.2);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: .3s;
+}
+
+.latest-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(0,0,0,.4);
+}
+
+.latest-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+
+.latest-content {
+  padding: 20px;
+}
+
+.latest-content h3 {
+  margin-bottom: 10px;
+}
+
+.latest-content small {
+  opacity: .6;
+}
+  </style>
 </head>
 <body>
    <div class="nav-overlay"></div> 
@@ -224,6 +269,12 @@
   </section>
   <section id="news" style="background: linear-gradient(#02103c, #0c1325);">
     <h2>NEWS</h2>
+    <div class="latest-news">
+      <h2 class="no-after" style="text-align:center; font-size:1.5rem; color:#b3d4ff; margin-bottom: 10px;">Latest News</h3>
+      <div id="latest-post">
+        <p>Loading latest news…</p>
+      </div>
+    </div>
     <p style="text-align:center; font-size:1.5rem; color:#b3d4ff;">
       Newest Post<br>
       <a href="news.html">See all posts -></a>
@@ -252,4 +303,42 @@
   </footer>
 <script src="scripts/nav.js"></script>
 </body>
+<script>
+(async function(){
+  const repoRawBase = "https://raw.githubusercontent.com/overcome-ovc/home/main/news/";
+  const el = document.getElementById("latest-post");
+
+  try {
+    const res = await fetch(repoRawBase + "index.json");
+    const posts = await res.json();
+
+    if (!posts.length) {
+      el.innerHTML = "<p>No news yet.</p>";
+      return;
+    }
+
+    // 🔥 NAJWAŻNIEJSZE
+    posts.sort((a,b)=> new Date(b.date) - new Date(a.date));
+    const latest = posts[0];
+
+    const img = latest.image || "assets/images/ovc.png";
+
+    el.innerHTML = `
+      <article class="latest-card">
+        <a href="post.html?date=${encodeURIComponent(latest.date)}" style="text-decoration:none;color:inherit;">
+          <img src="${img}" alt="${latest.title}">
+          <div class="latest-content">
+            <h3>${latest.title}</h3>
+            <small>${latest.date}</small>
+          </div>
+        </a>
+      </article>
+    `;
+
+  } catch(err) {
+    el.innerHTML = "<p style='color:red;'>Error loading news</p>";
+    console.error(err);
+  }
+})();
+</script>
 </html>
