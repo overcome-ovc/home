@@ -108,8 +108,8 @@ async function generate() {
   const date = document.getElementById('date').value;
   const content = document.getElementById('content').value;
 
-  if (!title || !date || !content) {
-    alert("Fill all fields");
+  if (!password || !title || !date || !content) {
+    alert("Fill all fields (including password)");
     return;
   }
 
@@ -120,10 +120,10 @@ async function generate() {
   formData.append("content", content);
 
   if (imageFile) {
-    formData.append("image", imageFile); // 🔥 TU IDZIE PLIK
+    formData.append("image", imageFile);
   }
 
-  const res = await fetch("https://git.overcome-ovc.workers.dev", {
+  const res = await fetch("https://twoj-worker.workers.dev", {
     method: "POST",
     body: formData
   });
@@ -131,9 +131,9 @@ async function generate() {
   const data = await res.json();
 
   if (data.ok) {
-    alert("Post added.");
+    alert("Post added 🔥");
   } else {
-    alert("Error: " + data.error);
+    alert(data.error || "Error");
   }
 }
 </script>
