@@ -82,19 +82,15 @@
 
 <script>
 let imageFile = null;
-let imageExt = "";
-let imageBase64 = "";
 
 document.getElementById('imageFile').addEventListener('change', function(e){
   const file = e.target.files[0];
   if (!file) return;
 
   imageFile = file;
-  imageExt = file.name.split('.').pop();
 
   const reader = new FileReader();
   reader.onload = function(e) {
-    imageBase64 = e.target.result.split(',')[1]; // 🔥 ważne
     const preview = document.getElementById('preview');
     preview.src = e.target.result;
     preview.style.display = "block";
@@ -113,8 +109,6 @@ async function generate() {
     return;
   }
 
-  console.log("CLICKED");
-
   const formData = new FormData();
   formData.append("password", password);
   formData.append("title", title);
@@ -131,14 +125,13 @@ async function generate() {
       body: formData
     });
 
-    console.log(res.status);
     const text = await res.text();
     console.log(text);
 
     const data = JSON.parse(text);
 
     if (data.ok) {
-      alert("Post added 🔥");
+      alert("Post added");
     } else {
       alert(data.error || "Error");
     }
