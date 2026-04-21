@@ -141,7 +141,7 @@ nav {
 
 /* ================= HERO ================= */
 .hero {
-  min-height: 100vh; /* 🔥 zamiast 200vh */
+  min-height: 200vh;
   height: auto;
   background:
     linear-gradient(rgba(8,12,28,.78), rgba(8,12,28,.88)),
