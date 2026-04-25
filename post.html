@@ -28,52 +28,64 @@
 (async function(){
   const repoRawBase = "https://raw.githubusercontent.com/overcome-OVC/home/main/news/";
   const params = new URLSearchParams(location.search);
-  const date = params.get('date');
+
+  // 🔥 FIX: use file instead of date
+  const file = params.get('file');
   const root = document.getElementById('post-root');
 
-  if (!date) {
-    root.innerHTML = "<p>No date provided in URL.</p>";
+  if (!file) {
+    root.innerHTML = "<p>No file provided in URL.</p>";
     return;
   }
 
   try {
     // load index.json
     const res = await fetch(repoRawBase + "index.json");
+
     if (!res.ok) {
       const txt = await res.text();
       console.error("index.json fetch not OK:", res.status, txt);
       root.innerHTML = `<p style="color:red;">Failed to load index.json (HTTP ${res.status}).</p>`;
       return;
     }
+
     const posts = await res.json();
-    const post = posts.find(p => p.date === date);
+
+    // 🔥 FIX: find by FILE instead of DATE
+    const post = posts.find(p => p.file === file);
+
     if (!post) {
-      root.innerHTML = "<p>Post not found for that date.</p>";
+      root.innerHTML = "<p>Post not found.</p>";
       return;
     }
 
-    // set title
     document.title = `${post.title} – Overcome`;
 
-    // image (fallback)
-const image = post.image || 'assets/images/ovc.png';
+    const image = post.image || 'assets/images/ovc.png';
 
-    // load markdown file
+    // load markdown file directly
     const mdRes = await fetch(repoRawBase + post.file);
+
     if (!mdRes.ok) {
       const raw = await mdRes.text();
       console.error("Markdown fetch error:", mdRes.status, raw);
-      root.innerHTML = `<p style="color:red;">Failed to load article file (HTTP ${mdRes.status}). Check console.</p>`;
+      root.innerHTML = `<p style="color:red;">Failed to load article file (HTTP ${mdRes.status}).</p>`;
       return;
     }
+
     const mdText = await mdRes.text();
     const html = marked.parse(mdText);
 
     root.innerHTML = `
-      <img src="${image}" alt="${post.title}" style="width:100%;max-height:420px;object-fit:cover;border-radius:12px;margin-bottom:1rem;">
+      <img src="${image}" alt="${post.title}" 
+           style="width:100%;max-height:420px;object-fit:cover;border-radius:12px;margin-bottom:1rem;">
+      
       <h1>${post.title}</h1>
       <small style="opacity:.8">${post.date}</small>
-      <article class="news-body" style="margin-top:1rem;">${html}</article>
+      
+      <article class="news-body" style="margin-top:1rem;">
+        ${html}
+      </article>
     `;
 
   } catch(err) {

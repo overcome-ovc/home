@@ -129,6 +129,7 @@
 
   try {
     const res = await fetch(repoRawBase + "index.json");
+
     if (!res.ok) {
       const txt = await res.text();
       console.error("index.json fetch not OK:", res.status, txt);
@@ -136,49 +137,45 @@
       return;
     }
 
-    // verify content-type or try parse
-    const contentType = res.headers.get('content-type') || '';
-    let posts;
-    if (contentType.includes('application/json')) {
-      posts = await res.json();
-    } else {
-      // try to parse but print raw if fails
-      const raw = await res.text();
-      try { posts = JSON.parse(raw); }
-      catch(e){
-        console.error("index.json is not valid JSON. Raw response:", raw);
-        listEl.innerHTML = `<p style="color:red;">index.json is invalid JSON — open raw URL in browser to inspect. Check console.</p>`;
-        return;
-      }
-    }
+    const posts = await res.json();
 
     if (!Array.isArray(posts) || posts.length === 0) {
       listEl.innerHTML = "<p>No news found 😔</p>";
       return;
     }
 
-    // render cards (with image if present)
     listEl.innerHTML = '';
-    posts.sort((a,b)=> new Date(b.date) - new Date(a.date));
+
+    // 🧠 sort newest first (ISO date still works)
+    posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
     posts.forEach((post) => {
-      const imgSrc = post.image || 'assets/images/ovc.png'; // fallback
+
+      const imgSrc = post.image || 'assets/images/ovc.png';
+
       const card = document.createElement('article');
       card.className = 'news-card';
+
+      // 🔥 IMPORTANT FIX: use FILE, not DATE
       card.innerHTML = `
-        <a href="post.html?date=${encodeURIComponent(post.date)}" style="display:block;text-decoration:none;color:inherit;">
-          <img src="${imgSrc}" alt="${post.title}" style="width:100%;height:160px;object-fit:cover;display:block;">
+        <a href="post.html?file=${encodeURIComponent(post.file)}"
+           style="display:block;text-decoration:none;color:inherit;">
+          
+          <img src="${imgSrc}" alt="${post.title}" />
+
           <div class="news-card-content">
             <h3>${post.title}</h3>
             <small>${post.date}</small>
           </div>
         </a>
       `;
+
       listEl.appendChild(card);
     });
 
   } catch(err) {
     console.error("Fetch error:", err);
-    listEl.innerHTML = `<p style="color:red;">Network/error fetching index.json — open console for details.</p>`;
+    listEl.innerHTML = `<p style="color:red;">Network error — check console.</p>`;
   }
 })();
 </script>
