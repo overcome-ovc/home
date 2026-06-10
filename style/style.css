@@ -205,6 +205,16 @@ h2 {
   -webkit-text-fill-color: transparent;
 }
 
+.h2-style {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 4.5rem;
+  background: linear-gradient(90deg,#5997fb,#80affd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 h2::after {
   content: "";
   display: block;
@@ -219,9 +229,10 @@ h2.no-after::after { display: none; }
 /* ================= CARDS ================= */
 .placeholder-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* 🔥 responsywny grid */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 220px)); /* 🔥 responsywny grid */
   gap: 1.6rem;
   margin-top: 1.5rem;
+  justify-content: center;
 }
 
 .player-card {
