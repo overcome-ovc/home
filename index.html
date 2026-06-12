@@ -54,6 +54,28 @@
 .latest-content small {
   opacity: .6;
 }
+
+.youtube-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.youtube-container iframe {
+  width: 100%;
+  height: 550px;
+  border-radius: 12px;
+  display: block;
+  box-shadow: 0 0 20px rgba(89, 151, 251, 0.4), 0 8px 32px rgba(89, 151, 251, 0.2);
+  border: 1px solid rgba(89, 151, 251, 0.3);
+}
+
+@media (max-width: 768px) {
+  .youtube-container iframe {
+    height: 300px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -97,6 +119,38 @@
       <p>Founded in 2025 and based in APAC, Overcome has quickly risen as a dynamic force in the competitive Brawl Stars scene. Our organization embodies the perfect fusion of regional passion and global drive, pushing limits across APAC and beyond. We believe in overcoming challenges through raw talent, unbreakable teamwork, and uncompromising professionalism. Our roster features dedicated players, experienced management, and passionate staff united by one goal: to break barriers, dominate the competitive landscape, and inspire the next wave of esports athletes. At Overcome, we're not just building a team — we're forging a legacy of resilience. With a rapidly growing and highly engaged community, we're establishing ourselves as a premier destination for top talent, fans, and strategic partners in the Brawl Stars esports industry.</p>
       <a href="https://x.com/Overcome_OVC" target="_blank" class="btn">#OvercomeYourLimits</a>
     </div>
+  </section>
+
+  <section id="streams">
+  <h2>STREAMS</h2>
+  <h3 style="text-align:center;" class="h2-style">The EA Montly Finals starts in:</h2>
+      <div id="countdown" style="font-size: 2em; text-align: center; font-weight: bold;"></div>
+      <script>
+        function updateCountdown() {
+          const eventDate = new Date('2026-06-13T08:45:00+02:00');
+          const now = new Date();
+          const diff = eventDate - now;
+      
+          if (diff <= 0) {
+            document.getElementById('countdown').innerText = '✅ Tournament has started!';
+            return;
+          }
+      
+           const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+           const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+           const minutes = Math.floor((diff / 1000 / 60) % 60);
+          const seconds = Math.floor((diff / 1000) % 60);
+      
+          
+          document.getElementById('countdown').innerText =
+            `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+      
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+      </script>
+  <div class="youtube-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/i-rQTkLRdwg?si=we5KRZyD_SvHQXlB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   </section>
 
 <section id="roster">
