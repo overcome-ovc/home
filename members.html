@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="assets/images/ovc.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Overcome | Rising Brawl Stars Esports APAC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style/style.css" />
+  <style>
+    .members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+  justify-items: center;
+}
+
+ .member-card {
+  background: linear-gradient(145deg, #8b0000, #400000);
+  border-radius: 18px;
+  padding: 20px;
+  width: 220px;
+  text-align: center;
+  color: white;
+  transition: 0.4s ease;
+  transform-style: preserve-3d;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  will-change: transform;
+}
+
+.member-card img {
+  width: 100%;
+  border-radius: 12px;
+  transition: 0.4s ease;
+}
+
+.member-card:hover {
+  transform: translateY(-12px) scale(1.05);
+  box-shadow: 0 25px 50px rgba(130,0,0,0.8);
+}
+
+.member-card:hover img {
+  transform: scale(1.08);
+}
+
+.member-card::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: linear-gradient(
+    120deg,
+    transparent 40%,
+    rgba(255,255,255,0.18),
+    transparent 60%
+  );
+  transform: translateX(-120%) rotate(0deg);
+  transition: none;
+}
+
+.member-card:hover::before {
+  animation: shineMove 0.9s ease forwards;
+}
+
+@keyframes shineMove {
+  0% {
+    transform: translateX(-120%) rotate(0deg);
+  }
+  100% {
+    transform: translateX(120%) rotate(0deg);
+  }
+}
+
+
+.member-card:hover::before {
+  transform: translateX(100%);
+}
+  </style>
+</head>
+<body>
+<div class="nav-overlay"></div> 
+  <header>
+    <nav>
+  <div class="logo">OVERCOME</div>
+
+  <div class="nav-links">
+    <a href="#home">Home</a>
+    <a href="https://evo9x.gg/collections/overcome">Shop</a>
+    <a href="#roster">Roster</a>
+    <a href="members.html">Members</a>
+    <a href="news.html">News</a>
+    <a href="#social">Social</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <div class="nav-toggle">
+    <i class="fas fa-bars"></i>
+  </div>
+</nav>
+
+  </header>
+  <div class="nav-panel">
+  <div class="nav-close"><i class="fas fa-times"></i></div>
+
+  <a href="#home">Home</a>
+  <a href="https://evo9x.gg/collections/overcome">Shop</a>
+  <a href="members.html">Members</a>
+  <a href="news.html">News</a>
+  <a href="#social">Social</a>
+  <a href="#contact">Contact</a>
+</div>
+  <main>
+  <section id="members-grid" style="max-width:1000px;margin:2rem auto;padding:0 1rem;">
+      <h2>Team Members</h2>
+      <div class="members-grid">
+
+      <a href="maly_misiek.html">
+        <div class="member-card">
+  <img src="assets/images/players/maly_misiek.png" alt="maly_misiek">
+  <h3>maly_misiek</h3>
+  <span>Player</span>
+</div>
+      </a>
+<a href="igmen.html">
+<div class="member-card">
+  <img src="assets/players/igmen.png" alt="Igmen">
+  <h3>Igmen</h3>
+  <span>Streamer</span>
+</div>
+      </a>
+  </div>
+    </section>
+  </main>
+
+  <script src="scripts/nav.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
+
+  <script>
+    VanillaTilt.init(document.querySelectorAll(".member-card"), {
+  max: 15,
+  speed: 400,
+  glare: true,
+  "max-glare": 0.3,
+});
+  </script>
+  </body>
+  </html>
