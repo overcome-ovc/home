@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="assets/images/ovc.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Overcome | Rising Brawl Stars Esports APAC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style/style.css" />
+<style>
+  .cr-profile {
+  position: relative;
+  overflow: hidden;
+  height: 600px;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,.6));
+  z-index: 1;
+}
+
+.bg-name {
+  position: absolute;
+  font-size: 180px;
+  font-weight: 900;
+  opacity: 0.07;
+  transform: translateX(-120%) skewX(-10deg);
+  transition: 1s cubic-bezier(.15,.9,.2,1);
+  white-space: nowrap;
+}
+
+.character {
+  position: absolute;
+  right: 40px;
+  bottom: -60px;
+  height: 130%;
+  object-fit: contain;
+  opacity: 0;
+  transform: translateY(120px) scale(0.9);
+}
+.character.enter {
+  animation: glitchIn 0.6s steps(2, end) forwards;
+}
+
+.player-nick {
+  position: absolute;
+  bottom: 40px;
+  left: 60px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 0.5s ease;
+}
+@media (max-width: 768px) {
+
+  .cr-profile {
+    height: 460px;
+  }
+
+  .bg-name {
+    position: absolute;
+    left: 0;
+    top: 120px;
+    font-weight: 900;
+    opacity: 0.07;
+    white-space: nowrap;
+    line-height: 0.9;
+    transform: skewX(-10deg);
+    pointer-events: none;
+    font-size: clamp(24px, 12vw, 60px);
+  }
+
+  .character {
+    position: absolute;
+    right: 40px;
+    bottom: -40px;
+    height: 110%;
+    max-height: 720px;
+    opacity: 0;
+    transform: translateY(120px) scale(0.9);
+  }
+
+  .character.enter {
+    animation: glitchInMobile 0.6s steps(2, end) forwards;
+  }
+
+  .player-nick {
+    display: none;
+  }
+}
+
+@media (max-width: 1600px) {
+  .character {
+    height: 120%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .character {
+    height: 110%;
+    right: 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .character {
+    height: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .character {
+    height: 70%;
+    right: 50%;
+    transform: translateX(50%) translateY(120px) scale(0.9);
+  }
+}
+
+@keyframes glitchIn {
+  0% {
+    opacity: 0;
+    transform: translateY(120px) scale(0.9);
+    filter: none;
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(80px) translateX(-4px) scale(1);
+    filter: drop-shadow(-3px 0 red) drop-shadow(3px 0 cyan);
+  }
+  40% {
+    transform: translateY(40px) translateX(4px);
+    filter: drop-shadow(3px 0 red) drop-shadow(-3px 0 cyan);
+  }
+  60% {
+    transform: translateY(10px) translateX(-2px);
+    filter: drop-shadow(-2px 0 red) drop-shadow(2px 0 cyan);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: none;
+  }
+}
+
+@keyframes glitchInMobile {
+  0% {
+    opacity: 0;
+    transform: translateX(50%) translateY(120px) scale(0.9);
+    filter: none;
+  }
+  30% {
+    opacity: 1;
+    transform: translateX(48%) translateY(60px);
+    filter: drop-shadow(-3px 0 red) drop-shadow(3px 0 cyan);
+  }
+  60% {
+    transform: translateX(52%) translateY(20px);
+    filter: drop-shadow(2px 0 red) drop-shadow(-2px 0 cyan);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(50%) translateY(0) scale(1);
+    filter: none;
+  }
+}
+
+.character.glitch {
+  animation: glitchIn 0.6s steps(2, end) forwards;
+}
+
+.player-info {
+  width: 100%;
+  max-width: 1200px;
+  margin: 100px auto;
+  padding: 0 60px;
+}
+
+.info-title {
+  font-size: 36px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  margin-bottom: 40px;
+}
+
+.info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.info-row {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.info-label {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.info-value {
+  font-size: 22px;
+  font-weight: 700;
+  text-align: right;
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.flag {
+  height: 20px;
+  width: auto;
+}
+
+@media (max-width: 768px) {
+  .info-row {
+    grid-template-columns: 1fr;
+  }
+
+  .info-value {
+    text-align: left;
+    justify-self: start;
+  }
+}
+</style>
+</head>
+
+<body>
+   <div class="nav-overlay"></div> 
+  <header>
+    <nav>
+  <div class="logo">OVERCOME</div>
+
+  <div class="nav-links">
+    <a href="#home">Home</a>
+    <a href="https://evo9x.gg/collections/overcome">Shop</a>
+    <a href="#roster">Roster</a>
+    <a href="#news">News</a>
+    <a href="#social">Social</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <div class="nav-toggle">
+    <i class="fas fa-bars"></i>
+  </div>
+</nav>
+
+  </header>
+  <div class="nav-panel">
+  <div class="nav-close"><i class="fas fa-times"></i></div>
+
+  <a href="#home">Home</a>
+  <a href="https://evo9x.gg/collections/overcome">Shop</a>
+  <a href="#roster">Roster</a>
+  <a href="#news">News</a>
+  <a href="#social">Social</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<div class="cr-profile">
+  <div class="bg-name">MALY_MISIEK</div>
+  <img src="assets/images/players/maly_misiek.png" class="character">
+  <h1 class="player-nick">maly_misiek</h1>
+</div>
+<section class="player-info">
+  <h2 class="info-title">PLAYER INFO</h2>
+
+  <div class="info-grid">
+    <div class="info-row">
+      <span class="info-label">Nickname</span>
+      <span class="info-value">maly_misiek</span>
+    </div>
+
+    <div class="info-row">
+      <span class="info-label">Role</span>
+      <span class="info-value">Web Developer</span>
+    </div>
+
+    <div class="info-row">
+      <span class="info-label">Country</span>
+      <span class="info-value"><img src="assets/flags/pl.svg" class="flag"> Poland</span>
+    </div>
+
+    <div class="info-row">
+      <span class="info-label">Active Since</span>
+      <span class="info-value">2026</span>
+    </div>
+  </div>
+</section>
+<script>
+// show player
+const bg = document.querySelector(".bg-name");
+const char = document.querySelector(".character");
+const nickMain = document.querySelector(".player-nick");
+
+function startCharacterIntro() {
+  if (!bg || !char || !nickMain) return;
+
+  bg.style.transform = "translateX(0) skewX(0deg)";
+  char.classList.add("enter");
+
+  setTimeout(() => {
+    nickMain.style.opacity = "1";
+    nickMain.style.transform = "translateY(0)";
+  }, 350);
+}
+
+window.addEventListener("load", startCharacterIntro);
+
+function fitBgName() {
+  const bg = document.querySelector(".bg-name");
+  if (!bg) return;
+
+  const maxWidth =
+    window.innerWidth < 768
+      ? window.innerWidth * 0.9
+      : window.innerWidth * 0.95;
+
+  let size = 180;
+  bg.style.fontSize = size + "px";
+
+  while (bg.scrollWidth > maxWidth && size > 60) {
+    size -= 2;
+    bg.style.fontSize = size + "px";
+  }
+}
+
+window.addEventListener("load", fitBgName);
+window.addEventListener("resize", fitBgName);
+
+
+function fitCharacter() {
+  const char = document.querySelector(".character");
+  if (!char) return;
+
+  const w = window.innerWidth;
+
+  let scale = 1;
+
+  if (w < 420) scale = 0.65;
+  else if (w < 600) scale = 0.75;
+  else if (w < 900) scale = 0.85;
+  else if (w < 1200) scale = 0.95;
+
+  char.style.transform = `scale(${scale}) translateY(0)`;
+}
+
+window.addEventListener("load", fitCharacter);
+window.addEventListener("resize", fitCharacter);
+
+</script>
+
+ <footer>
+  <div class="footer-content">
+    <div class="footer-column">
+      <h3>Overcome</h3>
+      <p>Rising Brawl Stars Esports Organization.</p>
+    </div>
+
+    <div class="footer-column">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="https://evo9x.gg/collections/overcome">Shop</a></li>
+        <li><a href="/home/news.html">News</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h3>Contact</h3>
+      <p>Follow us on:</p>
+      <div class="footer-social">
+        <a href="https://discord.gg/8NGcY3fSVK" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
+        <a href="https://x.com/Overcome_OVC" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025-2026 Overcome. All rights reserved.</p>
+  </div>
+</footer>
+<script src="scripts/nav.js"></script>
+<script src="scripts/day-night.js"></script>
+</body>
+</html>

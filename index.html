@@ -70,11 +70,36 @@
   border: 1px solid rgba(89, 151, 251, 0.3);
 }
 
+.gold {
+    background: linear-gradient(145deg, rgba(255, 215, 0, 0.15), rgba(255, 185, 0, 0.25));
+    border: 1px solid rgba(255, 215, 0, 0.45);
+    box-shadow: 0 20px 40px rgba(255, 190, 0, 0.18);
+    border-radius: 24px;
+    padding: 24px;
+    margin-bottom: 40px;
+  }
+
 @media (max-width: 768px) {
   .youtube-container iframe {
     height: 300px;
   }
 }
+
+.gold h3.h2-style {
+    color: #ffd94d;
+    text-shadow: 0 0 14px rgba(255, 215, 0, 0.6);
+  }
+
+  .gold .player-card {
+    background: rgba(255, 230, 150, 0.08);
+    border: 1px solid rgba(255, 215, 0, 0.25);    border-radius: 18px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+
+  .gold .player-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 225, 120, 0.65);
+    box-shadow: 0 18px 30px rgba(255, 215, 0, 0.25), inset 0 0 0 1px rgba(255, 230, 160, 0.35);  }
 
   </style>
 </head>
@@ -160,6 +185,48 @@
     Roster for 2026 season<br>
     Follow <a href="https://x.com/Overcome_OVC">@Overcome_OVC</a> for updates
   </p>
+<div class="gold">
+  <h3 class="h2-style">Korea Challengers Roster</h3>
+  <div class="placeholder-grid">
+
+<div class="player-card">
+      <h3>Banchan</h3>
+      <p>Player</p>
+      <img src="assets/flags/kr.svg" class="flag">
+      <p>
+        <a href="https://x.com/OpnbMitbanchan" target="_blank" class="social-icon"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://www.youtube.com/@Mitbanchan" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
+      </p>
+    </div>
+
+    <div class="player-card">
+      <h3>Gumos</h3>
+      <p>Player</p>
+      <img src="assets/flags/kr.svg" class="flag">
+      <p>
+        <a href="https://x.com/GumosYT" target="_blank" class="social-icon"><i class="fab fa-x-twitter"></i></a>
+      </p>
+    </div>
+
+    <div class="player-card">
+      <h3>Habin</h3>
+      <p>Player</p>
+      <img src="assets/flags/kr.svg" class="flag">
+      <p>
+      
+      </p>
+    </div>
+
+    <div class="player-card">
+      <h3>Bearguba</h3>
+      <p>Manager</p>
+      <img src="assets/flags/hk.svg" class="flag">
+      <p>
+        <a href="https://x.com/beargubagg" target="_blank" class="social-icon"><i class="fab fa-x-twitter"></i></a>
+      </p>
+    </div>
+    </div>
+    </div>
 
   <h3 class="h2-style">Main Roster</h3>
 
@@ -214,7 +281,9 @@
 
 <div class="placeholder-grid">
 
-    <div class="player-card">
+    
+  <div class="player-card">
+    <!--<a href="maly_misiek.html" target="_blank">-->
       <h3>maly_misiek</h3>
       <p>EMEA Player & Web Developer</p>
       <img src="assets/flags/pl.svg" class="flag">
@@ -222,6 +291,7 @@
         <a href="https://x.com/maly_misiek" target="_blank" class="social-icon"><i class="fab fa-x-twitter"></i></a>
         <a href="https://www.youtube.com/@maly_misiek" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
       </p>
+    <!--</a>-->
     </div>
 
     <div class="player-card">
@@ -384,7 +454,7 @@
 
     el.innerHTML = `
       <article class="latest-card">
-        <a href="post.html?date=${encodeURIComponent(latest.date)}" style="text-decoration:none;color:inherit;">
+        <a href="post.html?file=${encodeURIComponent(latest.file)}" style="text-decoration:none;color:inherit;">
           <img src="${img}" alt="${latest.title}">
           <div class="latest-content">
             <h3>${latest.title}</h3>
