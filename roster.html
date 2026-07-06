@@ -10,88 +10,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="style/style.css" />
-  <style>
-    .latest-news {
-  padding: 60px 6%;
-}
-
-#latest-post {
-  max-width: 600px;
-  margin: auto;
-}
-
-.latest-card {
-  background: linear-gradient(
-    145deg,
-    rgba(20,30,60,0.6),
-    rgba(10,15,30,0.7)
-  );
-  border: 1px solid rgba(89,151,251,0.2);
-  border-radius: 18px;
-  overflow: hidden;
-  transition: .3s;
-}
-
-.latest-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 15px 40px rgba(0,0,0,.4);
-}
-
-.latest-card img {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-}
-
-.latest-content {
-  padding: 20px;
-}
-
-.latest-content h3 {
-  margin-bottom: 10px;
-}
-
-.latest-content small {
-  opacity: .6;
-}
-
-.youtube-container {
-  max-width: 1000px;
-  margin: 40px auto;
-  padding: 20px;
-}
-
-.youtube-container iframe {
-  width: 100%;
-  height: 550px;
-  border-radius: 12px;
-  display: block;
-  box-shadow: 0 0 20px rgba(89, 151, 251, 0.4), 0 8px 32px rgba(89, 151, 251, 0.2);
-  border: 1px solid rgba(89, 151, 251, 0.3);
-}
-
-
-@media (max-width: 768px) {
-  .youtube-container iframe {
-    height: 300px;
-  }
-}
-
-  </style>
 </head>
 <body>
-   <div class="nav-overlay"></div> 
+<div class="nav-overlay"></div> 
   <header>
     <nav>
   <div class="logo">OVERCOME</div>
 
   <div class="nav-links">
-    <a href="#home">Home</a>
+    <a href="index.html">Home</a>
+    <a href="roster.html">Roster</a>
     <a href="https://evo9x.gg/collections/overcome">Shop</a>
-    <a href="#roster">Roster</a>
-    <a href="#news">News</a>
-    <a href="#social">Social</a>
-    <a href="#contact">Contact</a>
   </div>
 
   <div class="nav-toggle">
@@ -102,59 +31,12 @@
   </header>
   <div class="nav-panel">
   <div class="nav-close"><i class="fas fa-times"></i></div>
-
-  <a href="#home">Home</a>
+  <a href="index.html">Home</a>
+  <a href="roster.html">Roster</a>
   <a href="https://evo9x.gg/collections/overcome">Shop</a>
-  <a href="#roster">Roster</a>
-  <a href="#news">News</a>
-  <a href="#social">Social</a>
-  <a href="#contact">Contact</a>
 </div>
-<main>
-
-  <section class="hero" id="home" style="margin-top: 7rem;" >
-    <div class="hero-content">
-      <h1>OVERCOME</h1>
-      <p>Rising Brawl Stars Esports Organization<br>APAC Region • EST 2025</p>
-      <h2 class="no-after">About Us</h2>
-      <p>Founded in 2025 and based in APAC, Overcome has quickly risen as a dynamic force in the competitive Brawl Stars scene. Our organization embodies the perfect fusion of regional passion and global drive, pushing limits across APAC and beyond. We believe in overcoming challenges through raw talent, unbreakable teamwork, and uncompromising professionalism. Our roster features dedicated players, experienced management, and passionate staff united by one goal: to break barriers, dominate the competitive landscape, and inspire the next wave of esports athletes. At Overcome, we're not just building a team — we're forging a legacy of resilience. With a rapidly growing and highly engaged community, we're establishing ourselves as a premier destination for top talent, fans, and strategic partners in the Brawl Stars esports industry.</p>
-      <a href="https://x.com/Overcome_OVC" target="_blank" class="btn">#OvercomeYourLimits</a>
-    </div>
-  </section>
-
- <!-- <section id="streams">
-  <h2>STREAMS</h2>
-  <h3 style="text-align:center;" class="h2-style">The EA Montly Finals starts in:</h2>
-      <div id="countdown" style="font-size: 2em; text-align: center; font-weight: bold;"></div>
-      <script>
-        function updateCountdown() {
-          const eventDate = new Date('2026-06-13T08:45:00+02:00');
-          const now = new Date();
-          const diff = eventDate - now;
-      
-          if (diff <= 0) {
-            document.getElementById('countdown').innerText = 'The EA Montly Finals has started!';
-            return;
-          }
-      
-           const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-           const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-           const minutes = Math.floor((diff / 1000 / 60) % 60);
-          const seconds = Math.floor((diff / 1000) % 60);
-      
-          
-          document.getElementById('countdown').innerText =
-            `${days}d ${hours}h ${minutes}m ${seconds}s`;
-        }
-      
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-      </script>
-  <div class="youtube-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/i-rQTkLRdwg?si=we5KRZyD_SvHQXlB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-  </section>-->
-
-<section id="roster">
+  <main>
+  <section id="roster">
   <h2>ROSTER</h2>
 
   <p style="text-align:center; font-size: clamp(1.1rem, 3.2vw, 1.35rem); max-width: 760px; margin: 0 auto 2.5rem; color: #c0d8ff;">
@@ -195,24 +77,6 @@
     </div>
 
     <div class="player-card">
-      <h3>Yossy</h3>
-      <p>Coach</p>
-      <img src="assets/flags/jp.svg" class="flag">
-      <p>
-        <a href="https://x.com/yossy_bs77" target="_blank" class="social-icon"><i class="fab fa-x-twitter"></i></a>
-      </p>
-    </div>
-
-    <div class="player-card">
-      <h3>Lux</h3>
-      <p>Analyst</p>
-      <img src="assets/flags/ar.svg" class="flag">
-      <p>
-        <a href="https://x.com/luxbrawlstars" target="_blank" class="social-icon"><i class="fab fa-x-twitter"></i></a>
-      </p>
-    </div>  
-
-<div class="player-card">
       <h3>Bearguba</h3>
       <p>Manager</p>
       <img src="assets/flags/hk.svg" class="flag">
@@ -220,7 +84,6 @@
         <a href="https://x.com/beargubagg" target="_blank" class="social-icon"><i class="fab fa-x-twitter"></i></a>
       </p>
     </div>
-
     </div>
     </div>
 
@@ -368,102 +231,8 @@
     </div>
   </div>
 </section>
-  <section id="news" style="background: linear-gradient(#02103c, #0c1325);">
-    <h2>NEWS</h2>
-    <div class="latest-news">
-      <h2 class="no-after" style="text-align:center; font-size:1.5rem; color:#b3d4ff; margin-bottom: 10px;">Latest News</h2>
-      <div id="latest-post">
-        <p>Loading latest news…</p>
-      </div>
-    </div>
-    <p style="text-align:center; font-size:1.5rem; color:#b3d4ff;">
-      Newest Post<br>
-      <a href="news.html">See all posts -></a>
-    </p>
-  </section>
-  <section id="social" style="background: linear-gradient(#0c1325, #0a0a14);">
-    <h2>JOIN OVERCOME</h2>
-    <div class="socials">
-      <a href="https://x.com/Overcome_OVC" target="_blank">𝕏 Twitter</a>
-      <a href="https://discord.gg/8NGcY3fSVK" target="_blank">Discord</a>
-    </div>
-  </section>
+  </main>
 
-  <section id="contact">
-    <h2>CONTACT / BUSINESS</h2>
-    <p style="text-align:center; font-size:1.5rem; color:#b3d4ff;">
-      Partnerships, sponsorships, inquiries:<br>
-      <p>>overcome.ovc@gmail.com</p>
-    </p>
-    
-  </section>
-</main>
-   <footer>
-  <div class="footer-content">
-    <div class="footer-column">
-      <h3>Overcome</h3>
-      <p>Rising Brawl Stars Esports Organization.</p>
-    </div>
-
-    <div class="footer-column">
-      <h3>Quick Links</h3>
-      <ul>
-        <li><a href="https://evo9x.gg/collections/overcome">Shop</a></li>
-        <li><a href="/home/news.html">News</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-column">
-      <h3>Contact</h3>
-      <p>Follow us on:</p>
-      <div class="footer-social">
-        <a href="https://discord.gg/8NGcY3fSVK" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
-        <a href="https://x.com/Overcome_OVC" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <p>&copy; 2025-2026 Overcome. All rights reserved.</p>
-  </div>
-</footer>
-<script src="scripts/nav.js"></script>
-</body>
-<script>
-(async function(){
-  const repoRawBase = "https://raw.githubusercontent.com/overcome-ovc/home/main/news/";
-  const el = document.getElementById("latest-post");
-
-  try {
-    const res = await fetch(repoRawBase + "index.json");
-    const posts = await res.json();
-
-    if (!posts.length) {
-      el.innerHTML = "<p>No news yet.</p>";
-      return;
-    }
-
-    posts.sort((a,b)=> new Date(b.date) - new Date(a.date));
-    const latest = posts[0];
-
-    const img = latest.image || "assets/images/ovc.png";
-
-    el.innerHTML = `
-      <article class="latest-card">
-        <a href="post.html?file=${encodeURIComponent(latest.file)}" style="text-decoration:none;color:inherit;">
-          <img src="${img}" alt="${latest.title}">
-          <div class="latest-content">
-            <h3>${latest.title}</h3>
-            <small>${latest.date}</small>
-          </div>
-        </a>
-      </article>
-    `;
-
-  } catch(err) {
-    el.innerHTML = "<p style='color:red;'>Error loading news</p>";
-    console.error(err);
-  }
-})();
-</script>
-</html>
+  <script src="scripts/nav.js"></script>
+  </body>
+  </html>
