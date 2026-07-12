@@ -77,6 +77,30 @@
   }
 }
 
+.countdown-wrap {
+  grid-column: 1 / -1;
+  width: 100%;
+  text-align: center;
+  margin: 0 0 1rem;
+}
+
+.countdown-title {
+  margin: 0 0 .5rem;
+  text-align: center;
+  color: #ffd94d;
+}
+
+#countdown {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: #f2f7ff;
+}
+
   </style>
 </head>
 <body>
@@ -164,7 +188,34 @@
 <div class="gold">
   <h3 class="h2-style">Korea Challengers Roster</h3>
   <div class="placeholder-grid">
-
+<div class="countdown-wrap">
+  <h3 class="countdown-title h2-style">The Korea Challengers Finals starts in:</h3>
+  <div id="countdown"></div>
+</div>
+      <script>
+        function updateCountdown() {
+          const eventDate = new Date('2026-07-25T07:00:00+02:00');
+          const now = new Date();
+          const diff = eventDate - now;
+      
+          if (diff <= 0) {
+            document.getElementById('countdown').innerText = 'The EA Montly Finals has started!';
+            return;
+          }
+      
+           const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+           const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+           const minutes = Math.floor((diff / 1000 / 60) % 60);
+          const seconds = Math.floor((diff / 1000) % 60);
+      
+          
+          document.getElementById('countdown').innerText =
+            `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+      
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+      </script>
 <div class="player-card">
       <h3>Banchan</h3>
       <p>Player</p>
