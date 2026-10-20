@@ -174,7 +174,6 @@
 
     listEl.innerHTML = '';
 
-    // 🧠 sort newest first (ISO date still works)
     posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
     posts.forEach((post) => {
@@ -184,7 +183,6 @@
       const card = document.createElement('article');
       card.className = 'news-card';
 
-      // 🔥 IMPORTANT FIX: use FILE, not DATE
       card.innerHTML = `
         <a href="post.html?file=${encodeURIComponent(post.file)}"
            style="display:block;text-decoration:none;color:inherit;">
