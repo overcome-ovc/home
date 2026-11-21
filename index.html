@@ -1,504 +1,199 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d1a">
+  <meta name="description" content="Overcome is a Hong Kong esports organization established in 2025, competing globally in Brawl Stars. From Hong Kong, with an international heart.">
   <link rel="icon" href="assets/images/ovc.png" type="image/png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Overcome | Rising Brawl Stars Esports APAC</title>
+  <title>Overcome | From Hong Kong, for the world</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="style/style.css"/>
-  <style>
-    .latest-news {
-  padding: 60px 6%;
-}
-
-#latest-post {
-  max-width: 600px;
-  margin: auto;
-}
-
-.latest-card {
-  background: linear-gradient(
-    145deg,
-    rgba(20,30,60,0.6),
-    rgba(10,15,30,0.7)
-  );
-  border: 1px solid rgba(89,151,251,0.2);
-  border-radius: 18px;
-  overflow: hidden;
-  transition: .3s;
-}
-
-.latest-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 15px 40px rgba(0,0,0,.4);
-}
-
-.latest-card img {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-}
-
-.latest-content {
-  padding: 20px;
-}
-
-.latest-content h3 {
-  margin-bottom: 10px;
-}
-
-.latest-content small {
-  opacity: .6;
-}
-
-.youtube-container {
-  max-width: 1000px;
-  margin: 40px auto;
-  padding: 20px;
-}
-
-.youtube-container iframe {
-  width: 100%;
-  height: 550px;
-  border-radius: 12px;
-  display: block;
-  box-shadow: 0 0 20px rgba(89, 151, 251, 0.4), 0 8px 32px rgba(89, 151, 251, 0.2);
-  border: 1px solid rgba(89, 151, 251, 0.3);
-}
-
-
-@media (max-width: 768px) {
-  .youtube-container iframe {
-    height: 300px;
-  }
-}
-
-.countdown-wrap {
-  grid-column: 1 / -1;
-  width: 100%;
-  text-align: center;
-  margin: 0 0 1rem;
-}
-
-.countdown-title {
-  margin: 0 0 .5rem;
-  text-align: center;
-  color: #ffd94d;
-}
-
-#countdown {
-  display: block;
-  width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  font-size: clamp(1.2rem, 3vw, 2rem);
-  font-weight: 700;
-  letter-spacing: .04em;
-  color: #f2f7ff;
-}
-
-  </style>
+  <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-   <div class="nav-overlay"></div> 
-  <header>
-    <nav>
-  <div class="logo">OVERCOME</div>
-
-  <div class="nav-links">
-    <a href="#home">Home</a>
-    <a href="https://evo9x.gg/collections/overcome">Shop</a>
-    <a href="#roster">Roster</a>
-    <a href="#news">News</a>
-    <a href="#social">Social</a>
-    <a href="#contact">Contact</a>
-  </div>
-
-  <div class="nav-toggle">
-    <i class="fas fa-bars"></i>
-  </div>
-</nav>
-
+  <div class="nav-overlay"></div>
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Main navigation">
+      <a class="brand" href="index.html" aria-label="Overcome home">
+        <img src="assets/images/ovc.png" alt="">
+        <span>OVERCOME<small>HONG KONG</small></span>
+      </a>
+      <div class="nav-links">
+        <a href="#teams">Teams</a>
+        <a href="#results">Results</a>
+        <a href="news.html">News</a>
+        <a href="#about">About</a>
+      </div>
+      <a class="nav-cta" href="https://evo9x.gg/collections/overcome" target="_blank" rel="noopener noreferrer">2026 PRO KIT <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+      <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+    </nav>
   </header>
-  <div class="nav-panel">
-  <div class="nav-close"><i class="fas fa-times"></i></div>
-
-  <a href="#home">Home</a>
-  <a href="https://evo9x.gg/collections/overcome">Shop</a>
-  <a href="#roster">Roster</a>
-  <a href="#news">News</a>
-  <a href="#social">Social</a>
-  <a href="#contact">Contact</a>
-</div>
-<main>
-
-  <section class="hero" id="home" style="margin-top: 7rem;" >
-    <div class="hero-content">
-      <h1>OVERCOME</h1>
-      <p>Rising Brawl Stars Esports Organization<br>APAC Region • EST 2025</p>
-      <h2 class="no-after">About Us</h2>
-      <p>Founded in 2025 and based in APAC, Overcome has quickly risen as a dynamic force in the competitive Brawl Stars scene. Our organization embodies the perfect fusion of regional passion and global drive, pushing limits across APAC and beyond. We believe in overcoming challenges through raw talent, unbreakable teamwork, and uncompromising professionalism. Our roster features dedicated players, experienced management, and passionate staff united by one goal: to break barriers, dominate the competitive landscape, and inspire the next wave of esports athletes. At Overcome, we're not just building a team — we're forging a legacy of resilience. With a rapidly growing and highly engaged community, we're establishing ourselves as a premier destination for top talent, fans, and strategic partners in the Brawl Stars esports industry.</p>
-      <a href="https://x.com/Overcome_OVC" target="_blank" class="btn">#OvercomeYourLimits</a>
-    </div>
-  </section>
-
-<section id="streams">
-  <h2>STREAMS</h2>
-  <h3 class="h2-style">UCLan 5 Tournament!</h3>
-  <h3 style="text-align:center;" class="h2-style">The UCLan 5 starts in:</h2>
-      <div id="countdown" style="font-size: 2em; text-align: center; font-weight: bold;"></div>
-      <script>
-        function updateCountdown() {
-          const eventDate = new Date('2026-11-07T10:00:00+01:00');
-          const now = new Date();
-          const diff = eventDate - now;
-      
-          if (diff <= 0) {
-            document.getElementById('countdown').innerText = 'The UCLan 5 has started!';
-            return;
-          }
-      
-           const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-           const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-           const minutes = Math.floor((diff / 1000 / 60) % 60);
-          const seconds = Math.floor((diff / 1000) % 60);
-      
-          
-          document.getElementById('countdown').innerText =
-            `${days}d ${hours}h ${minutes}m ${seconds}s`;
-        }
-      
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-      </script>
-  <div class="youtube-container">
-    <iframe
-    src="https://player.twitch.tv/?channel=uclouvaincefucesports&parent=overcome-ovc.github.io&autoplay=false&muted=true"
-    width="560"
-    height="315"
-    frameborder="0"
-    allowfullscreen="true"
-    scrolling="no">
-</iframe>
-  </section>
-<section id="roster">
-  <h2>ROSTER</h2>
-
-  <p style="text-align:center; font-size: clamp(1.1rem, 3.2vw, 1.35rem); max-width: 760px; margin: 0 auto 2.5rem; color: #c0d8ff;">
-    Roster for 2026 season<br>
-    Follow <a href="https://x.com/Overcome_OVC">@Overcome_OVC</a> for updates
-  </p>
-
-<h3 class="h2-style">UCLan 5 Tournament</h3>
-  <div class="placeholder-grid">
-<div class="player-card">
-      <h3>Prissme</h3>
-      <p>Player</p>
-      <img src="assets/flags/be.svg" class="flag">
-      <p>
-        <a href="https://www.twitch.tv/prissmetv" target="_blank" class="social-icon"><i class="fab fa-twitch"></i></a>
-        <a href="https://www.youtube.com/channel/UCBuKuWW8dkdHLBWsQ22jL0Q" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
-      </p>
-    </div>
-
-    <div class="player-card">
-      <h3>Mxgic</h3>
-      <p>Player</p>
-      <img src="assets/flags/be.svg" class="flag">
-      <!--<p>
-        <a href="https://x.com/GumosYT" target="_blank" class="social-icon"><i class="fab fa-x-twitter"></i></a>
-        <a href="https://www.youtube.com/@TAGUMY" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
-      </p>-->
-    </div>
-
-    <div class="player-card">
-      <h3>nizor</h3>
-      <p>Player</p>
-      <img src="assets/flags/fr.svg" class="flag">
-      <p>
-      
-      </p>
-    </div>
+  <div class="nav-panel" id="mobile-menu" aria-label="Mobile navigation">
+    <button class="nav-close" type="button" aria-label="Close navigation"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    <a href="#teams">Teams</a>
+    <a href="#results">Results</a>
+    <a href="roster.html">Roster</a>
+    <a href="news.html">News</a>
+    <a href="#about">About</a>
+    <a href="https://evo9x.gg/collections/overcome" target="_blank" rel="noopener noreferrer">2026 Pro Kit</a>
   </div>
-  
-  <h3 class="h2-style">Korea Challengers Roster (3rd-4th place)</h3>
-  <div class="placeholder-grid">
-<div class="player-card">
-      <h3>Banchan</h3>
-      <p>Player & Content Creator & Streamer</p>
-      <img src="assets/flags/kr.svg" class="flag">
-      <p>
-        <a href="https://x.com/OpnbMitbanchan" target="_blank" class="social-icon"><i class="fab fa-x-twitter"></i></a>
-        <a href="https://www.youtube.com/@Mitbanchan" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
-      </p>
-    </div>
 
-    <div class="player-card">
-      <h3>Gumos</h3>
-      <p>Player</p>
-      <img src="assets/flags/kr.svg" class="flag">
-      <p>
-        <a href="https://x.com/GumosYT" target="_blank" class="social-icon"><i class="fab fa-x-twitter"></i></a>
-        <a href="https://www.youtube.com/@TAGUMY" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
-      </p>
-    </div>
-
-    <div class="player-card">
-      <h3>Habin</h3>
-      <p>Player</p>
-      <img src="assets/flags/kr.svg" class="flag">
-      <p>
-      
-      </p>
-    </div>
-
-    <div class="player-card">
-      <h3>Yossy</h3>
-      <p>Coach</p>
-      <img src="assets/flags/jp.svg" class="flag">
-      <p>
-        <a href="https://x.com/yossy_bs77" target="_blank" class="social-icon"><i class="fab fa-x-twitter"></i></a>
-      </p>
-
-    </div> 
-
-<div class="player-card">
-      <h3>Bearguba</h3>
-      <p>Manager</p>
-      <img src="assets/flags/hk.svg" class="flag">
-      <p>
-        <a href="https://x.com/beargubagg" target="_blank" class="social-icon"><i class="fab fa-x-twitter"></i></a>
-      </p>
-    </div>
-  </div>
-  <!--<h3 class="h2-style">EMEA Roster (Brawl Stars Amateur League)</h3>
-
-  <div class="placeholder-grid">
-
-
-    <div class="player-card">
-      <h3>Dusan</h3>
-      <p>EMEA Player</p>
-      <img src="assets/flags/rs.svg" class="flag">
-      <p>
-        <a href="https://x.com/Dusan126352" target="_blank" class="social-icon"><i class="fab fa-x-twitter"></i></a>
-      </p>
-    </div>
-    <div class="player-card">
-      <h3>Styx</h3>
-      <p>EMEA Player</p>
-      <img src="assets/flags/de.svg" class="flag">
-      <p>
-        <a href="https://x.com/weepyBs" target="_blank" class="social-icon"><i class="fab fa-x-twitter"></i></a>
-      </p>
-    </div>
-    <div class="player-card">
-      <h3>Oli</h3>
-      <p>EMEA Player</p>
-      <img src="assets/flags/pl.svg" class="flag">
-      <p>
-        <!--<a href="https://x.com/weepyBs" target="_blank" class="social-icon"><i class="fab fa-x-twitter"></i></a>
-      </p>
-    </div>
-
-  </div> -->
-
-  <h3 class="h2-style">Chess Players</h3>
-
-  <div class="placeholder-grid">
-
-    <div class="player-card">
-      <h3>Ker3isa</h3>
-      <p>Chess Player, Comunity Manager</p>
-      <img src="assets/flags/gt.svg" class="flag">
-      <p>
-        <a href="https://x.com/Ker3isa" target="_blank" class="social-icon"><i class="fab fa-x-twitter"></i></a>
-        <a href="https://www.youtube.com/@Ker3isaGD" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
-        <a href="https://bsky.app/profile/ker3isa.bsky.social" target="_blank" class="social-icon"><i class="fab fa-bluesky"></i></a>
-        <a href="https://www.instagram.com/ofker3isa" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.twitch.tv/ker3isa" target="_blank" class="social-icon"><i class="fab fa-twitch"></i></a>
-        
-      </p>
-      </p>
-    </div>
-    </div>
-
-    <h3 class="h2-style">Staff</h3>
-
-    <div class="placeholder-grid">
-
-    <div class="player-card">
-      <h3>Bearguba</h3>
-      <p>Manager</p>
-      <img src="assets/flags/hk.svg" class="flag">
-      <p>
-        <a href="https://x.com/beargubagg" target="_blank" class="social-icon"><i class="fab fa-x-twitter"></i></a>
-      </p>
-    </div>
-
-    <!--<div class="player-card">
-      <h3>Razer</h3>
-      <p>EMEA Coach</p>
-      <img src="assets/flags/uz.svg" class="flag">
-      <p>
-        <a href="https://x.com/razerz0ne" target="_blank" class="social-icon"><i class="fab fa-x-twitter"></i></a>
-        <a href="https://www.youtube.com/channel/UC9VfHmlnG8QKyc1pA2Yb45Q" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
-        <a href="https://www.twitch.tv/razersfly" target="_blank" class="social-icon"><i class="fab fa-twitch"></i></a>
-        <a href="https://www.tiktok.com/@razersfly" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
-        <a href="https://t.me/razerzonetgk" target="_blank" class="social-icon"><i class="fab fa-telegram"></i></a>
-      </p>
-    </div>-->
-
-    <div class="player-card">
-      <h3>SPV</h3>
-      <p>Content Creator</p>
-      <img src="assets/flags/ua.svg" class="flag">
-      <p>
-        <a href="https://x.com/spvukraine12" target="_blank" class="social-icon"><i class="fab fa-x-twitter"></i></a>
-        <a href="https://www.youtube.com/@llc_spv" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
-        <a href="https://t.me/spvua" target="_blank" class="social-icon"><i class="fab fa-telegram"></i></a>
-      </p>
-    </div>
-
-    <div class="player-card">
-    <!--<a href="maly_misiek.html" target="_blank">-->
-      <h3>maly_misiek</h3>
-      <p>Web Developer</p>
-      <img src="assets/flags/pl.svg" class="flag">
-      <p>
-        <a href="https://x.com/maly_misiek" target="_blank" class="social-icon"><i class="fab fa-x-twitter"></i></a>
-        <a href="https://www.youtube.com/@maly_misiek" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
-      </p>
-    <!--</a>-->
-    </div>
-
-      <div class="player-card">
-      <h3>CordiGoat</h3>
-      <p>Graphic Designer</p>
-      <img src="assets/flags/gt.svg" class="flag">
-      <p>
-        <a href="https://x.com/CordiDaGoat" target="_blank" class="social-icon"><i class="fab fa-x-twitter"></i></a>
-        <a href="https://www.instagram.com/cordigoat_bs/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.tiktok.com/@cordidagoat" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
-      </p>
-    </div>
-
-      <div class="player-card">
-      <h3>Jakec</h3>
-      <p>Comunity Manager</p>
-      <img src="assets/flags/kr.svg" class="flag">
-      <p>
-        <!--<a href="https://x.com/CordiDaGoat" target="_blank" class="social-icon"><i class="fab fa-x-twitter"></i></a>-->
-        <a href="https://www.instagram.com/jakec69420" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.tiktok.com/@jakec69420" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
-        <a href="https://youtube.com/@jakec69420" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
-      </p>
-    </div>
-    </div>
-  </div>
-</section>
-  <section id="news" style="background: linear-gradient(#02103c, #0c1325);">
-    <h2>NEWS</h2>
-    <div class="latest-news">
-      <h2 class="no-after" style="text-align:center; font-size:1.5rem; color:#b3d4ff; margin-bottom: 10px;">Latest News</h2>
-      <div id="latest-post">
-        <p>Loading latest news…</p>
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> HONG KONG · EST. 2025 · BRAWL STARS</p>
+        <h1>FROM HONG KONG,<br><span>WITH AN INTERNATIONAL<br>HEART.</span></h1>
+        <p class="hero-intro">A Hong Kong esports organization with a global ambition. We compete in Brawl Stars across regions, bringing East Asian talent to the international stage.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#teams">Explore our teams <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          <a class="button button-outline" href="https://discord.gg/8NGcY3fSVK" target="_blank" rel="noopener noreferrer">Join the community <i class="fa-brands fa-discord" aria-hidden="true"></i></a>
+        </div>
+        <p class="hero-motto">PREPARE LIKE THE BEST IN THE WORLD <span>#OVERCOMEYOURLIMITS</span></p>
       </div>
-    </div>
-    <p style="text-align:center; font-size:1.5rem; color:#b3d4ff;">
-      Newest Post<br>
-      <a href="news.html">See all posts -></a>
-    </p>
-  </section>
-  <section id="social" style="background: linear-gradient(#0c1325, #0a0a14);">
-    <h2>JOIN OVERCOME</h2>
-    <div class="socials">
-      <a href="https://x.com/Overcome_OVC" target="_blank">𝕏 Twitter</a>
-      <a href="https://discord.gg/8NGcY3fSVK" target="_blank">Discord</a>
-      <a href="https://www.instagram.com/overcome_ovc/" target="_blank">Instagram</a>
-    </div>
-  </section>
-
-  <section id="contact">
-    <h2>CONTACT / BUSINESS</h2>
-    <p style="text-align:center; font-size:1.5rem; color:#b3d4ff;">
-      Partnerships, sponsorships, inquiries:<br>
-      <a href="mailto:overcome.ovc@gmail.com">overcome.ovc@gmail.com</a>
-    </p>
-    
-  </section>
-</main>
-   <footer>
-  <div class="footer-content">
-    <div class="footer-column">
-      <h3>Overcome</h3>
-      <p>Rising Brawl Stars Esports Organization.</p>
-    </div>
-
-    <div class="footer-column">
-      <h3>Quick Links</h3>
-      <ul>
-        <li><a href="https://evo9x.gg/collections/overcome">Shop</a></li>
-        <li><a href="/home/news.html">News</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-column">
-      <h3>Contact</h3>
-      <p>Follow us on:</p>
-      <div class="footer-social">
-        <a href="https://discord.gg/8NGcY3fSVK" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
-        <a href="https://x.com/Overcome_OVC" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
-        <a href="https://www.instagram.com/overcome_ovc/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+      <div class="hero-visual" data-artwork-slot="hero-key-art">
+        <div class="hero-art-glow"></div>
+        <img class="hero-roster-art" src="assets/images/2026-04-25-overcomemainemea2026.png" alt="Overcome 2026 EMEA roster artwork">
+        <img class="hero-emblem" src="assets/images/ovc.png" alt="Overcome emblem">
+        <span class="hero-visual-label">ONE TEAM. EVERY REGION.</span>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <div class="footer-bottom">
-    <p>&copy; 2025-2026 Overcome. All rights reserved.</p>
-  </div>
-</footer>
-<script src="scripts/nav.js"></script>
-</body>
-<script>
-(async function(){
-  const repoRawBase = "https://raw.githubusercontent.com/overcome-ovc/home/main/news/";
-  const el = document.getElementById("latest-post");
+    <section class="identity section-shell" id="identity">
+      <div class="section-kicker"><span>01</span> THE ORGANIZATION</div>
+      <div class="identity-layout">
+        <h2>ONE STANDARD.<br><span>NO BORDERS.</span></h2>
+        <div class="identity-copy">
+          <p>Founded in 2025 in Hong Kong, Overcome is built to connect East Asian mobile esports talent with the international stage. We compete globally in Brawl Stars, representing our roots with an international heart.</p>
+          <p>Our teams prepare with purpose, grow together, and take on every challenge under one banner: <strong>#OvercomeYourLimits</strong>.</p>
+          <a class="text-link" href="roster.html">Meet the players and staff <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <div class="identity-facts">
+        <div><strong>2025</strong><span>Established</span></div>
+        <div><strong>HKG</strong><span>Our home</span></div>
+        <div><strong>GLOBAL</strong><span>Our stage</span></div>
+        <div><strong>BRAWL STARS</strong><span>Our game</span></div>
+      </div>
+    </section>
 
-  try {
-    const res = await fetch(repoRawBase + "index.json");
-    const posts = await res.json();
-
-    if (!posts.length) {
-      el.innerHTML = "<p>No news yet.</p>";
-      return;
-    }
-
-    posts.sort((a,b)=> new Date(b.date) - new Date(a.date));
-    const latest = posts[0];
-
-    const img = latest.image || "assets/images/ovc.png";
-
-    el.innerHTML = `
-      <article class="latest-card">
-        <a href="post.html?file=${encodeURIComponent(latest.file)}" style="text-decoration:none;color:inherit;">
-          <img src="${img}" alt="${latest.title}">
-          <div class="latest-content">
-            <h3>${latest.title}</h3>
-            <small>${latest.date}</small>
-          </div>
-        </a>
+    <section class="teams-section section-shell" id="teams">
+      <div class="section-heading">
+        <div><div class="section-kicker"><span>02</span> THE DIVISIONS</div><h2>BUILT TO <span>COMPETE.</span></h2></div>
+        <a class="text-link" href="roster.html">Full roster <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+      </div>
+      <article class="featured-division" data-artwork-slot="featured-team-art">
+        <img class="division-art" src="assets/images/2026-07-20-ROSTER ANNOUNCMENT.png" alt="Overcome Challengers Korea roster announcement artwork">
+        <div class="division-shade"></div>
+        <div class="division-copy">
+          <p class="eyebrow">FEATURED DIVISION · EAST ASIA</p>
+          <h3>BRAWL<br>STARS</h3>
+          <p>Representing Hong Kong across premier East Asian LANs and international cross-regional qualifiers. One game. One standard.</p>
+          <a class="button button-primary" href="roster.html#korea">Explore the division <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+        <div class="division-highlights">
+          <div><strong>SEED 1</strong><span>Regional qualifier</span></div>
+          <div><strong>TOP 4</strong><span>Seoul LAN · Jamsil DN Colosseum</span></div>
+          <div><strong>2025</strong><span>Year established</span></div>
+        </div>
       </article>
-    `;
+      <div class="division-grid">
+        <a class="division-tile" href="roster.html#emea">
+          <span class="tile-index">01 / EMEA</span><h3>MAIN<br>ROSTER</h3><span class="tile-link">Players, staff & details <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </a>
+        <a class="division-tile" href="roster.html#north-america">
+          <span class="tile-index">02 / NORTH AMERICA</span><h3>TIER B<br>SQUAD</h3><span class="tile-link">Players, staff & details <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </a>
+        <a class="division-tile division-tile-image" data-artwork-slot="uclan-tournament-art" href="roster.html#uclan">
+          <span class="tile-index">03 / INTERNATIONAL · TOP SEED</span><h3>UCLAN 5</h3><span class="tile-link">Tournament roster <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </a>
+      </div>
+    </section>
 
-  } catch(err) {
-    el.innerHTML = "<p style='color:red;'>Error loading news</p>";
-    console.error(err);
-  }
-})();
-</script>
+    <section class="results-section section-shell" id="results">
+      <div class="section-heading">
+        <div><div class="section-kicker"><span>03</span> THE COMPETITION</div><h2>RECENT <span>RESULTS.</span></h2></div>
+        <span class="results-note">BRAWL STARS · 2026</span>
+      </div>
+      <div class="results-list" aria-label="Recent Overcome match results">
+        <article class="result-row"><span class="result-status loss">L</span><div class="result-team"><strong>OVERCOME</strong><span>Challengers Korea · Semifinal</span></div><strong class="result-score">0 <i>—</i> 3</strong><div class="result-opponent"><strong>WWL ESPORTS</strong><span>Challengers SK Finals · Bo5</span></div></article>
+        <article class="result-row"><span class="result-status win">W</span><div class="result-team"><strong>OVERCOME</strong><span>Challengers Korea · Quarterfinal</span></div><strong class="result-score">3 <i>—</i> 1</strong><div class="result-opponent"><strong>NOCTURNE</strong><span>Challengers SK Finals · Bo5</span></div></article>
+        <article class="result-row"><span class="result-status loss">L</span><div class="result-team"><strong>OVERCOME</strong><span>UCLan 5 · Qualifier #2</span></div><strong class="result-score">0 <i>—</i> 2</strong><div class="result-opponent"><strong>SLICE ESPORT</strong><span>Cross-regional qualifier · Bo3</span></div></article>
+        <article class="result-row"><span class="result-status loss">L</span><div class="result-team"><strong>OVERCOME</strong><span>UCLan 5 · Qualifier #2</span></div><strong class="result-score">0 <i>—</i> 2</strong><div class="result-opponent"><strong>ERA</strong><span>Cross-regional qualifier · Bo3</span></div></article>
+      </div>
+      <div class="achievement-callout">
+        <div><p class="eyebrow">A STATEMENT ON LAN</p><h3>TOP 4 IN SEOUL.</h3><p>Seed 1 in, Top 4 out. Overcome qualified for the Challengers Korea LAN finals at Seoul's Jamsil DN Colosseum and swept Nocturne 3–0 in the quarterfinals.</p></div>
+        <span class="achievement-mark">TOP<br><strong>4</strong></span>
+      </div>
+    </section>
+
+    <section class="kit-section section-shell" data-artwork-slot="pro-kit-product-image">
+      <div class="kit-copy"><div class="section-kicker"><span>04</span> MADE FOR THE WORLD STAGE</div><p class="eyebrow">2026 PRO KIT</p><h2>WEAR THE<br><span>LIMITLESS.</span></h2><p>Designed in Hong Kong for the international stage. Explore the official Overcome collection and rep the colors.</p><a class="button button-primary" href="https://evo9x.gg/collections/overcome" target="_blank" rel="noopener noreferrer">Shop Overcome <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div>
+      <div class="kit-art"><img src="assets/images/ovc.png" alt="Overcome emblem" loading="lazy"><span>OVC / 2026</span></div>
+    </section>
+
+    <section class="news-section section-shell" id="news">
+      <div class="section-heading"><div><div class="section-kicker"><span>05</span> THE NEWSROOM</div><h2>WHAT'S <span>HAPPENING.</span></h2></div><a class="text-link" href="news.html">All news <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
+      <div class="news-grid" id="latest-posts" aria-live="polite"><p class="loading">Loading latest news…</p></div>
+    </section>
+
+    <section class="community-section section-shell" id="about">
+      <div class="community-copy"><p class="eyebrow">THE NEXT CHAPTER STARTS WITH YOU</p><h2>COME<br><span>OVERCOME.</span></h2><p>Follow the journey, meet the community, and be part of the climb.</p></div>
+      <div class="community-links">
+        <a href="https://x.com/Overcome_OVC" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i><span>Follow on X</span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+        <a href="https://www.instagram.com/overcome_ovc/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram" aria-hidden="true"></i><span>Instagram</span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+        <a href="https://discord.gg/8NGcY3fSVK" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-discord" aria-hidden="true"></i><span>Join Discord</span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+        <a href="mailto:overcome.ovc@gmail.com"><i class="fa-regular fa-envelope" aria-hidden="true"></i><span>Business enquiries</span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand footer-brand" href="index.html"><img src="assets/images/ovc.png" alt=""><span>OVERCOME<small>HONG KONG · EST. 2025</small></span></a>
+    <p>From Hong Kong, with an international heart.<br><strong>#OvercomeYourLimits</strong></p>
+    <span class="copyright">© 2026 Overcome. All rights reserved.</span>
+  </footer>
+  <script>
+    (async function () {
+      const container = document.getElementById("latest-posts");
+      try {
+        const response = await fetch("https://raw.githubusercontent.com/overcome-ovc/home/main/news/index.json");
+        if (!response.ok) throw new Error(`News request failed with HTTP ${response.status}`);
+        const posts = await response.json();
+        if (!Array.isArray(posts)) throw new Error("News index must be an array");
+        posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+        container.replaceChildren();
+        posts.slice(0, 3).forEach((post, index) => {
+          const link = document.createElement("a");
+          link.className = `news-card${index === 0 ? " news-card-featured" : ""}`;
+          link.href = `post.html?file=${encodeURIComponent(post.file)}`;
+          const image = document.createElement("img");
+          image.src = post.image || "assets/images/ovc.png";
+          image.alt = "";
+          image.loading = "lazy";
+          const content = document.createElement("div");
+          content.className = "news-card-content";
+          const date = document.createElement("span");
+          date.className = "news-date";
+          date.textContent = post.date;
+          const title = document.createElement("h3");
+          title.textContent = post.title;
+          const readMore = document.createElement("span");
+          readMore.className = "news-read-more";
+          readMore.textContent = "Read story";
+          content.append(date, title, readMore);
+          link.append(image, content);
+          container.append(link);
+        });
+        if (!posts.length) container.textContent = "No news has been published yet.";
+      } catch (error) {
+        console.error("Could not load Overcome news:", error);
+        container.innerHTML = '<p class="loading">News could not be loaded right now. Visit <a href="news.html">the newsroom</a>.</p>';
+      }
+    })();
+  </script>
+  <script src="scripts/nav.js"></script>
+</body>
 </html>

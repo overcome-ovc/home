@@ -1,127 +1,89 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d1a">
   <link rel="icon" href="assets/images/ovc.png" type="image/png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>News | Overcome</title>
+  <title>News | Overcome Esports</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="style/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="style/style.css">
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <style>
-    
-  </style>
 </head>
 <body>
-      <nav><div class="nav-container"><div class="nav-links"><a href="news.html">← Back to News</a></div></div></nav>
-
-  <main style="max-width:900px;margin:2rem auto;padding:0 1rem;">
-    <div id="post-root">
-      <p>Loading post...</p>
-    </div>
+  <div class="nav-overlay"></div>
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Main navigation">
+      <a class="brand" href="index.html" aria-label="Overcome home"><img src="assets/images/ovc.png" alt=""><span>OVERCOME<small>HONG KONG</small></span></a>
+      <div class="nav-links"><a href="index.html#teams">Teams</a><a href="index.html#results">Results</a><a href="news.html">News</a><a href="index.html#about">About</a></div>
+      <a class="nav-cta" href="https://evo9x.gg/collections/overcome" target="_blank" rel="noopener noreferrer">2026 PRO KIT <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+      <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+    </nav>
+  </header>
+  <div class="nav-panel" id="mobile-menu" aria-label="Mobile navigation">
+    <button class="nav-close" type="button" aria-label="Close navigation"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    <a href="index.html#teams">Teams</a><a href="index.html#results">Results</a><a href="news.html">News</a><a href="index.html#about">About</a><a href="https://evo9x.gg/collections/overcome" target="_blank" rel="noopener noreferrer">2026 Pro Kit</a>
+  </div>
+  <main id="main" class="article-main">
+    <a class="text-link article-back" href="news.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to the newsroom</a>
+    <div id="post-root" aria-live="polite"><p class="loading">Loading story…</p></div>
   </main>
-
-<script>
-(async function(){
-  const repoRawBase = "https://raw.githubusercontent.com/overcome-OVC/home/main/news/";
-  const params = new URLSearchParams(location.search);
-
-  // 🔥 FIX: use file instead of date
-  const file = params.get('file');
-  const root = document.getElementById('post-root');
-
-  if (!file) {
-    root.innerHTML = "<p>No file provided in URL.</p>";
-    return;
-  }
-
-  try {
-    // load index.json
-    const res = await fetch(repoRawBase + "index.json");
-
-    if (!res.ok) {
-      const txt = await res.text();
-      console.error("index.json fetch not OK:", res.status, txt);
-      root.innerHTML = `<p style="color:red;">Failed to load index.json (HTTP ${res.status}).</p>`;
-      return;
-    }
-
-    const posts = await res.json();
-
-    // 🔥 FIX: find by FILE instead of DATE
-    const post = posts.find(p => p.file === file);
-
-    if (!post) {
-      root.innerHTML = "<p>Post not found.</p>";
-      return;
-    }
-
-    document.title = `${post.title} – Overcome`;
-
-    const image = post.image || 'assets/images/ovc.png';
-
-    // load markdown file directly
-    const mdRes = await fetch(repoRawBase + post.file);
-
-    if (!mdRes.ok) {
-      const raw = await mdRes.text();
-      console.error("Markdown fetch error:", mdRes.status, raw);
-      root.innerHTML = `<p style="color:red;">Failed to load article file (HTTP ${mdRes.status}).</p>`;
-      return;
-    }
-
-    const mdText = await mdRes.text();
-    const html = marked.parse(mdText);
-
-    root.innerHTML = `
-      <img src="${image}" alt="${post.title}" 
-           style="width:100%;max-height:420px;object-fit:cover;border-radius:12px;margin-bottom:1rem;">
-      
-      <h1>${post.title}</h1>
-      <small style="opacity:.8">${post.date}</small>
-      
-      <article class="news-body" style="margin-top:1rem;">
-        ${html}
-      </article>
-    `;
-
-  } catch(err) {
-    console.error("Error loading post:", err);
-    root.innerHTML = `<p style="color:red;">Network/error loading post — check console.</p>`;
-  }
-})();
-</script>
-  <footer>
-  <div class="footer-content">
-    <div class="footer-column">
-      <h3>Overcome</h3>
-      <p>Rising Brawl Stars Esports Organization.</p>
-    </div>
-
-    <div class="footer-column">
-      <h3>Quick Links</h3>
-      <ul>
-        <li><a href="https://evo9x.gg/collections/overcome">Shop</a></li>
-        <li><a href="/home/news.html">News</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-column">
-      <h3>Contact</h3>
-      <p>Follow us on:</p>
-      <div class="footer-social">
-        <a href="https://discord.gg/8NGcY3fSVK" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
-        <a href="https://x.com/Overcome_OVC" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <p>&copy; 2025-2026 Overcome. All rights reserved.</p>
-  </div>
-</footer>
+  <footer class="site-footer">
+    <a class="brand footer-brand" href="index.html"><img src="assets/images/ovc.png" alt=""><span>OVERCOME<small>HONG KONG · EST. 2025</small></span></a>
+    <p>From Hong Kong, with an international heart.<br><strong>#OvercomeYourLimits</strong></p>
+    <span class="copyright">© 2026 Overcome. All rights reserved.</span>
+  </footer>
+  <script>
+    (async function () {
+      const repoRawBase = "https://raw.githubusercontent.com/overcome-ovc/home/main/news/";
+      const file = new URLSearchParams(location.search).get("file");
+      const root = document.getElementById("post-root");
+      const showError = (message) => {
+        const error = document.createElement("p");
+        error.className = "loading";
+        error.textContent = message;
+        root.replaceChildren(error);
+      };
+      if (!file) {
+        showError("No story was selected. Return to the newsroom to choose an article.");
+        return;
+      }
+      try {
+        const indexResponse = await fetch(`${repoRawBase}index.json`);
+        if (!indexResponse.ok) throw new Error(`News index request failed with HTTP ${indexResponse.status}`);
+        const posts = await indexResponse.json();
+        if (!Array.isArray(posts)) throw new Error("News index must be an array");
+        const post = posts.find((item) => item.file === file);
+        if (!post) {
+          showError("That story could not be found. It may have been removed.");
+          return;
+        }
+        const articleResponse = await fetch(repoRawBase + encodeURIComponent(post.file).replace(/%2F/g, "/"));
+        if (!articleResponse.ok) throw new Error(`Article request failed with HTTP ${articleResponse.status}`);
+        const markdown = await articleResponse.text();
+        document.title = `${post.title} | Overcome Esports`;
+        const image = document.createElement("img");
+        image.className = "article-cover";
+        image.src = post.image || "assets/images/ovc.png";
+        image.alt = "";
+        const title = document.createElement("h1");
+        title.textContent = post.title;
+        const date = document.createElement("p");
+        date.className = "article-date";
+        date.textContent = post.date;
+        const body = document.createElement("article");
+        body.className = "news-body";
+        body.innerHTML = marked.parse(markdown);
+        root.replaceChildren(image, title, date, body);
+      } catch (error) {
+        console.error("Could not load Overcome article:", error);
+        showError("This story could not be loaded right now. Please try again later.");
+      }
+    })();
+  </script>
+  <script src="scripts/nav.js"></script>
 </body>
 </html>
