@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roaring Knight — Final Attack Animation</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #06060a;
+      color: #f4f4f8;
+      font-family: system-ui, -apple-system, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      gap: 14px;
+      padding: 16px;
+    }
+    canvas {
+      border: 3px solid #ffffff;
+      background: #000000;
+      box-shadow: 0 0 32px rgba(140, 60, 255, 0.35);
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    .controls {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    button {
+      background: #181824;
+      color: #fff;
+      border: 1px solid #6b6b8f;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    button:hover {
+      background: #28283d;
+    }
+    .hint {
+      font-size: 13px;
+      color: #a5a5c2;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="battle" width="640" height="420"></canvas>
+  <div class="controls">
+    <button id="replayBtn">Odtwórz ponownie</button>
+    <span class="hint">Sterowanie duszą: strzałki lub WASD</span>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("battle");
+    const ctx = canvas.getContext("2d");
+    const replayBtn = document.getElementById("replayBtn");
+
+    const box = { x: 170, y: 120, w: 300, h: 210 };
+    const soul = { x: box.x + box.w / 2, y: box.y + box.h / 2, r: 7, speed: 3.4 };
+    const keys = {};
+
+    window.addEventListener("keydown", (e) => {
+      keys[e.key.toLowerCase()] = true;
+    });
+    window.addEventListener("keyup", (e) => {
+      keys[e.key.toLowerCase()] = false;
+    });
+
+    let slashes = [];
+    let shockwaves = [];
+    let particles = [];
+    let startTime = performance.now();
+    let flashAlpha = 0;
+
+    function spawnFinalAttack() {
+      slashes = [];
+      shockwaves = [];
+      particles = [];
+      soul.x = box.x + box.w / 2;
+      soul.y = box.y + box.h / 2;
+      flashAlpha = 0.85;
+      startTime = performance.now();
+
+      // Seria szybkich cięć w obrębie pola walki
+      const count = 18;
+      for (let i = 0; i < count; i++) {
+        const delay = 0.25 + i * 0.14;
+        const angle = ((i % 2 === 0 ? 1 : -1) * (0.35 + (i * 0.27) % 1.1));
+        const cx = box.x + 30 + ((i * 53) % (box.w - 60));
+        const cy = box.y + 25 + ((i * 41) % (box.h - 50));
+        slashes.push({
+          delay,
+          duration: 0.42,
+          x: cx,
+          y: cy,
+          angle,
+          len: 150 + (i % 4) * 35
+        });
+      }
+
+      // Fale uderzeniowe na zakończenie sekwencji
+      for (let w = 0; w < 3; w++) {
+        shockwaves.push({
+          delay: 2.9 + w * 0.28,
+          duration: 0.75,
+          x: box.x + box.w / 2,
+          y: box.y + box.h / 2,
+          maxRadius: 250
+        });
+      }
+
+      // Cząsteczki mroku
+      for (let p = 0; p < 70; p++) {
+        const ang = Math.random() * Math.PI * 2;
+        const spd = 1.2 + Math.random() * 4.5;
+        particles.push({
+          x: box.x + box.w / 2,
+          y: box.y + box.h / 2,
+          vx: Math.cos(ang) * spd,
+          vy: Math.sin(ang) * spd,
+          size: 2 + Math.random() * 3,
+          alpha: 1,
+          delay: 0.2 + Math.random() * 2.8
+        });
+      }
+    }
+
+    function updateSoul() {
+      let dx = 0;
+      let dy = 0;
+      if (keys["arrowleft"] || keys["a"]) dx -= 1;
+      if (keys["arrowright"] || keys["d"]) dx += 1;
+      if (keys["arrowup"] || keys["w"]) dy -= 1;
+      if (keys["arrowdown"] || keys["s"]) dy += 1;
+
+      if (dx !== 0 && dy !== 0) {
+        const inv = 1 / Math.SQRT2;
+        dx *= inv;
+        dy *= inv;
+      }
+
+      soul.x = Math.max(box.x + soul.r + 2, Math.min(box.x + box.w - soul.r - 2, soul.x + dx * soul.speed));
+      soul.y = Math.max(box.y + soul.r + 2, Math.min(box.y + box.h - soul.r - 2, soul.y + dy * soul.speed));
+    }
+
+    function drawKnightSilhouette(t) {
+      const kx = canvas.width / 2;
+      const ky = 58 + Math.sin(t * 3.5) * 4;
+
+      ctx.save();
+      ctx.translate(kx, ky);
+
+      // Poświata
+      const grad = ctx.createRadialGradient(0, 0, 5, 0, 0, 65);
+      grad.addColorStop(0, "rgba(155, 70, 255, 0.45)");
+      grad.addColorStop(1, "rgba(155, 70, 255, 0)");
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(0, 0, 65, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Sylwetka i rogi
+      ctx.fillStyle = "#0d0b14";
+      ctx.strokeStyle = "#d9c2ff";
+      ctx.lineWidth = 2;
+
+      ctx.beginPath();
+      ctx.moveTo(-26, -24);
+      ctx.lineTo(-10, -4);
+      ctx.lineTo(10, -4);
+      ctx.lineTo(26, -24);
+      ctx.lineTo(16, 10);
+      ctx.lineTo(28, 34);
+      ctx.lineTo(-28, 34);
+      ctx.lineTo(-16, 10);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+
+      // Wizjer
+      ctx.fillStyle = "#ff2a6d";
+      ctx.fillRect(-10, 2, 7, 3);
+      ctx.fillRect(3, 2, 7, 3);
+
+      ctx.restore();
+    }
+
+    function drawSoul() {
+      ctx.save();
+      ctx.translate(soul.x, soul.y);
+      ctx.fillStyle = "#ff1e38";
+      ctx.beginPath();
+      const s = soul.r;
+      ctx.moveTo(0, s * 0.85);
+      ctx.bezierCurveTo(-s * 1.4, -s * 0.1, -s * 1.1, -s * 1.2, 0, -s * 0.45);
+      ctx.bezierCurveTo(s * 1.1, -s * 1.2, s * 1.4, -s * 0.1, 0, s * 0.85);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function render(now) {
+      const t = (now - startTime) / 1000;
+      updateSoul();
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Tło
+      ctx.fillStyle = "#040408";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      drawKnightSilhouette(t);
+
+      // Pole walki
+      ctx.strokeStyle = "#ffffff";
+      ctx.lineWidth = 3;
+      ctx.strokeRect(box.x, box.y, box.w, box.h);
+
+      // Wnętrze pola walki
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(box.x + 2, box.y + 2, box.w - 4, box.h - 4);
+      ctx.clip();
+
+      // Cząsteczki
+      for (const p of particles) {
+        if (t >= p.delay) {
+          const pt = t - p.delay;
+          const px = p.x + p.vx * pt * 35;
+          const py = p.y + p.vy * pt * 35;
+          const alpha = Math.max(0, 1 - pt * 0.9);
+          ctx.fillStyle = `rgba(185, 110, 255, ${alpha})`;
+          ctx.fillRect(px, py, p.size, p.size);
+        }
+      }
+
+      // Cięcia
+      for (const sl of slashes) {
+        if (t >= sl.delay && t <= sl.delay + sl.duration) {
+          const p = (t - sl.delay) / sl.duration;
+          const alpha = Math.sin(p * Math.PI);
+
+          ctx.save();
+          ctx.translate(sl.x, sl.y);
+          ctx.rotate(sl.angle);
+
+          // Linia ostrzeżenia / rozbłysk
+          ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+          ctx.lineWidth = 2 + (1 - p) * 4;
+          ctx.beginPath();
+          ctx.moveTo(-sl.len / 2, 0);
+          ctx.lineTo(sl.len / 2, 0);
+          ctx.stroke();
+
+          // Fioletowa aura cięcia
+          ctx.strokeStyle = `rgba(170, 65, 255, ${alpha * 0.75})`;
+          ctx.lineWidth = 9 * alpha;
+          ctx.beginPath();
+          ctx.moveTo(-sl.len * 0.45, 0);
+          ctx.lineTo(sl.len * 0.45, 0);
+          ctx.stroke();
+
+          ctx.restore();
+        }
+      }
+
+      // Fale uderzeniowe
+      for (const sw of shockwaves) {
+        if (t >= sw.delay && t <= sw.delay + sw.duration) {
+          const p = (t - sw.delay) / sw.duration;
+          const radius = 12 + p * sw.maxRadius;
+          const alpha = (1 - p) * 0.8;
+
+          ctx.strokeStyle = `rgba(220, 170, 255, ${alpha})`;
+          ctx.lineWidth = 4 * (1 - p) + 1;
+          ctx.beginPath();
+          ctx.arc(sw.x, sw.y, radius, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+      }
+
+      drawSoul();
+      ctx.restore();
+
+      // Błysk początkowy
+      if (flashAlpha > 0.01) {
+        ctx.fillStyle = `rgba(255, 255, 255, ${flashAlpha})`;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        flashAlpha *= 0.88;
+      }
+
+      // Zapętlenie animacji po zakończeniu
+      if (t > 4.2) {
+        spawnFinalAttack();
+      }
+
+      requestAnimationFrame(render);
+    }
+
+    replayBtn.addEventListener("click", spawnFinalAttack);
+    spawnFinalAttack();
+    requestAnimationFrame(render);
+  </script>
+</body>
+</html>
